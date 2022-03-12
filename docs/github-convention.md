@@ -44,7 +44,7 @@ git revert <commit-id>
 2. 브랜치를 파고 작업을 하면서 커밋을 많이 하는 것을 주저하지 마세요.
 3. 작업이 끝났다면 이제 깃헙에 PR을 올릴 차례입니다. 
 4. 깃헙 리포지토리 > 상단의 Pull Request 탭 > 우측에 New pull request를 클릭해주세요.
-5. base는 master, compare는 자신이 작업한 브랜치로 설정하고 Create pull request를 클릭해주세요.
+5. base는 main, compare는 자신이 작업한 브랜치로 설정하고 Create pull request를 클릭해주세요.
 6. PR에는 다음과 같은 내용들을 포함합니다.
    1. 수정/추가 사항
    2. 작동 여부
