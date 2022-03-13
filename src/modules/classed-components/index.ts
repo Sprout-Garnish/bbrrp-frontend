@@ -6,7 +6,7 @@ import { Classed } from "./types";
 const classed: Classed = {};
 
 elements.forEach((element) => {
-  Object.defineProperty(classed, element, elementFactory(element));
+  Object.defineProperty(classed, element, { value: elementFactory(element) });
 });
 
 export default classed;

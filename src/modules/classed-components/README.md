@@ -15,6 +15,7 @@ import classed from "classed-components";
 import clsx from "clsx";
 
 const CarList = classed.div(`flex flex-col flex-1 overflow-scroll`)
+const AnotherCarList = classed.div`flex flex-col flex-1 overflow-scroll`
 const CarItem = classed.div((props: { selected?: boolean }) =>
   clsx([
     "border-2 flex p-3 m-2 items-center",

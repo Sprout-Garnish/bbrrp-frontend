@@ -2,6 +2,7 @@
 import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
 
+type TWClassName<P> = string | TemplateStringsArray | TWClassNameCallback<P>;
 type TWClassNameCallback<P> = (props: PropsWithChildren<P>) => string;
 
 export default function elementFactory<
@@ -10,9 +11,18 @@ export default function elementFactory<
     HTMLElement
   > = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 >(element: keyof JSX.IntrinsicElements) {
-  return function <P = {}>(
-    twClassName: string | TWClassNameCallback<P>
-  ): React.FC<T> {
+  return function <P = {}>(twClassName: TWClassName<P>): React.FC<T> {
+    if (typeof twClassName === "object") {
+      return ({ children, className, ...props }) =>
+        React.createElement(
+          element,
+          {
+            className: clsx([className, twClassName[0]]),
+            ...props,
+          },
+          children
+        );
+    }
     if (typeof twClassName === "string") {
       return ({ children, className, ...props }) =>
         React.createElement(
@@ -46,4 +56,4 @@ export type ElementFactory<
   > = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 > = (
   element: keyof JSX.IntrinsicElements
-) => <P = {}>(twClassName: string | TWClassNameCallback<P>) => React.FC<T>;
+) => <P = {}>(twClassName: TWClassName<P>) => React.FC<T>;
