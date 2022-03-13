@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "apollo:codegen": "rm -rf src/api && apollo client:codegen src/api --target=typescript --outputFlat"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
@@ -26,6 +27,7 @@
     "@types/react": "17.0.40",
     "@types/url-join": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "apollo": "^2.33.9",
     "autoprefixer": "^10.4.2",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
