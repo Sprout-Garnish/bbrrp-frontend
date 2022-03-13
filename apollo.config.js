@@ -1,8 +1,10 @@
+const Constants = require('./src/modules/constants');
+
 module.exports = {
   client: {
     service: {
       name: 'backend',
-      url: 'http://localhost:4000/graphql',
+      url: Constants.GRAPHQL_ENDPOINT,
     },
     includes: ['./src/**/*.tsx'],
     tagName: 'gql',
