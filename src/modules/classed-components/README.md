@@ -12,14 +12,14 @@ styled-components의 `styled`처럼 뒤에 HTML 태그 이름을 붙여 사용�
 ```tsx
 import React from "react";
 import classed from "classed-components";
-import clsx from "clsx";
+import clsx, { tw } from "clsx";
 
 const CarList = classed.div(`flex flex-col flex-1 overflow-scroll`)
 const AnotherCarList = classed.div`flex flex-col flex-1 overflow-scroll`
-const CarItem = classed.div((props: { selected?: boolean }) =>
+const CarItem = classed.div<{ selected?: boolean }>(({selected}) =>
   clsx([
-    "border-2 flex p-3 m-2 items-center",
-    selected ? "border-black" : "border-white",
+    tw`border-2 flex p-3 m-2 items-center`,
+    selected ? tw`border-black` : tw`border-white`,
   ])
 );
 

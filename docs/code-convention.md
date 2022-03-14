@@ -191,11 +191,11 @@ import clsx from 'clsx'
 
 const Wrapper = classed.div(`h-full flex flex-col`)
 const Title = classed.div(`text-gray-500 text-center text-xs py-2 border-b`)
-const CarList = classed.div(`flex flex-col flex-1 overflow-scroll`)
-const CarItem = classed.div((props: { selected?: boolean }) =>
+const CarList = classed.div`flex flex-col flex-1 overflow-scroll`;
+const CarItem = classed.div<{ selected?: boolean }>(({selected}) =>
   clsx([
-    "border-2 flex p-3 m-2 items-center",
-    selected ? "border-black" : "border-white",
+    tw`border-2 flex p-3 m-2 items-center`,
+    selected ? tw`border-black` : tw`border-white`,
   ])
 );
 const CarImage = classed.div(`h-14`)
