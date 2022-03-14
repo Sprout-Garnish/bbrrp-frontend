@@ -1,6 +1,7 @@
 /* global JSX HTMLElement */
 import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
+import { processTemplateString, TemplateArgs } from "./template-string";
 
 type TWClassName<P> = string | TemplateStringsArray | TWClassNameCallback<P>;
 type TWClassNameCallback<P> = (props: PropsWithChildren<P>) => string;
@@ -11,13 +12,23 @@ export default function elementFactory<
     HTMLElement
   > = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 >(element: keyof JSX.IntrinsicElements) {
-  return function <P = {}>(twClassName: TWClassName<P>): React.FC<T> {
+  return function <P = {}>(
+    twClassName: TWClassName<P>,
+    ...args: TemplateArgs[]
+  ): React.FC<T> {
     if (typeof twClassName === "object") {
       return ({ children, className, ...props }) =>
         React.createElement(
           element,
           {
-            className: clsx([className, twClassName[0]]),
+            className: clsx([
+              className,
+              processTemplateString({
+                template: twClassName,
+                args,
+                props: { children, className, ...props },
+              }),
+            ]),
             ...props,
           },
           children
@@ -56,4 +67,4 @@ export type ElementFactory<
   > = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 > = (
   element: keyof JSX.IntrinsicElements
-) => <P = {}>(twClassName: TWClassName<P>) => React.FC<T>;
+) => <P = {}>(twClassName: TWClassName<P>, ...args: string[]) => React.FC<T>;

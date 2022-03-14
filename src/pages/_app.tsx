@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import "@src/utilities/string";
+import "@src/utilities/array";
 import React, { useState } from "react";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";

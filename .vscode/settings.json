@@ -1,5 +1,5 @@
 {
     "tailwindCSS.experimental.classRegex": [
-        "classed\\.[a-z]{1,15}\\(*[`'\"](.*[`'\"])\\)*"
+        "(?:tw|classed\\.[a-z]{1,15})\\(*[`'\"](.*[`'\"])\\)*"
     ]
 }
