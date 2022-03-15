@@ -3,21 +3,36 @@ import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
 import { processTemplateString, TemplateArgs } from "./template-string";
 
-type TWClassName<P> = string | TemplateStringsArray | TWClassNameCallback<P>;
+export type TWClassName<P> =
+  | string
+  | TemplateStringsArray
+  | TWClassNameCallback<P>;
 type TWClassNameCallback<P> = (props: PropsWithChildren<P>) => string;
 
-export default function elementFactory<
+export function elementFactory<
   T extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLElement>,
     HTMLElement
   > = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
->(element: keyof JSX.IntrinsicElements) {
-  return function <P = {}>(
-    twClassName: TWClassName<P>,
-    ...args: TemplateArgs[]
-  ): React.FC<T> {
+>(
+  element: keyof JSX.IntrinsicElements
+): <P = {}>(
+  twClassName: TWClassName<P>,
+  ...args: TemplateArgs[]
+) => React.FC<T & P>;
+
+// Type T is for matching overloading implemetaions of elementFactory
+export function elementFactory<T extends {} = {}>(
+  element: React.FunctionComponent
+): <P = {}>(
+  twClassName: TWClassName<P>,
+  ...args: TemplateArgs[]
+) => React.FC<T & P>;
+
+export default function elementFactory(element: any) {
+  return function (twClassName: any, ...args: any) {
     if (typeof twClassName === "object") {
-      return ({ children, className, ...props }) =>
+      return ({ children, className, ...props }: any) =>
         React.createElement(
           element,
           {
@@ -35,7 +50,7 @@ export default function elementFactory<
         );
     }
     if (typeof twClassName === "string") {
-      return ({ children, className, ...props }) =>
+      return ({ children, className, ...props }: any) =>
         React.createElement(
           element,
           { className: clsx([twClassName, className]), ...props },
@@ -43,7 +58,7 @@ export default function elementFactory<
         );
     }
     if (typeof twClassName === "function") {
-      return ({ children, className, ...props }) => {
+      return ({ children, className, ...props }: any) => {
         //@ts-ignore
         const classNameFromProps = twClassName({ children, ...props });
         return React.createElement(
@@ -60,6 +75,11 @@ export default function elementFactory<
   };
 }
 
+export type ComponentFactory<P = {}> = (
+  twClassName: TWClassName<P>,
+  ...args: TemplateArgs[]
+) => React.FC<P>;
+
 export type ElementFactory<
   T extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLElement>,
@@ -67,4 +87,7 @@ export type ElementFactory<
   > = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 > = (
   element: keyof JSX.IntrinsicElements
-) => <P = {}>(twClassName: TWClassName<P>, ...args: string[]) => React.FC<T>;
+) => <P = {}>(
+  twClassName: TWClassName<P>,
+  ...args: TemplateArgs[]
+) => React.FC<T & P>;

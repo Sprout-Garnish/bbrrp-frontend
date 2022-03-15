@@ -1,7 +1,11 @@
 /* global JSX */
-import { ElementFactory } from "./element-factory";
+import { ComponentFactory, ElementFactory } from "./element-factory";
 
 export interface Classed {
+  // Callable (supports inheritance)
+  <P = {}>(component: any): ComponentFactory<P>;
+
+  // HTML Tags
   a: ReturnType<ElementFactory<JSX.IntrinsicElements["a"]>>;
   abbr: ReturnType<ElementFactory<JSX.IntrinsicElements["abbr"]>>;
   address: ReturnType<ElementFactory<JSX.IntrinsicElements["address"]>>;
