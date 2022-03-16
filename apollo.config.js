@@ -1,4 +1,4 @@
-const Constants = require('./src/modules/constants');
+const Constants = require('./modules/constants');
 
 module.exports = {
   client: {
