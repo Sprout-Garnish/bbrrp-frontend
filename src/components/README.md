@@ -8,24 +8,45 @@ common 폴더를 제외하고, 컴포넌트의 폴더구조는, pages에 있는 
 예시
 
 |- pages/
+
 |-- _app.tsx
+
 |-- index.tsx <- 컴포넌트 이름 Home
+
 |-- restaurant/
+
 |--- index.tsx <- 컴포넌트 이름 Restaurants
+
 |--- [id].tsx <- 컴포넌트 이름 Restaurant
+
 |
+
 |- components/
+
 |-- home/
+
 |--- navigation/ <- 큰 컴포넌트
+
 |---- index.tsx <- 작은 컴포넌트들을 모은 navigation 컴포넌트
+
 |---- avatar.tsx
+
 |---- flat-button.tsx
+
 |---- ....
+
 |--- hero.tsx
+
 |--- ...
+
 |--- restaurants/
+
 |---- index.tsx
+
 |---- ...
+
 |---- restaurant/
+
 |----- index.tsx
+
 |----- ...

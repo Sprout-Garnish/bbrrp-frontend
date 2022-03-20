@@ -8,9 +8,13 @@
 
 폴더 구조
 |- modules
+
 |-- bluetooth
+
 |--- index.ts
+
 |--- device.ts
+
 |--- manager.ts
 
 ```typescript
