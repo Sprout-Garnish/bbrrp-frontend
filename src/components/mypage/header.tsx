@@ -9,21 +9,23 @@ const Header: NextPage = () => {
       <section className="icon_section">
         <Image src="/vercel.svg" width={50} height={30} layout="fixed" />
       </section>
+      <section className="search_section">
+        <form id="search" onSubmit={() => alert("검색하기")}>
+          <input id="name" type="text" required />
+          <button type="submit">
+            <Image src="/search.png" width={30} height={30} layout="fixed" />
+          </button>
+        </form>
+      </section>
       <section className="nav_section">
         <Link href="/">
-          <a
-            onClick={() => alert("알림 보기 화면으로 이동합니다.")}
-            className="button"
-          >
-            <Image src="/alarm.webp" width={30} height={30} layout="fixed" />
+          <a onClick={() => console.log("알림")} className="button">
+            알림
           </a>
         </Link>
         <Link href="/">
-          <a
-            onClick={() => alert("마이 페이지로 이동합니다.")}
-            className="button"
-          >
-            <Image src="/person.png" width={30} height={30} layout="fixed" />
+          <a onClick={() => console.log("환경설정")} className="button">
+            환경설정
           </a>
         </Link>
       </section>
@@ -44,13 +46,25 @@ const Header: NextPage = () => {
         .icon_section {
           justify-content: flex-start;
           padding-left: 30px;
+          flex: 1;
+        }
+        .search_section {
+          flex: 5;
+          justify-content: flex-end;
+          align-items: center;
+          padding-right: 30px;
         }
         .nav_section {
           justify-content: flex-end;
           padding-right: 30px;
+          flex: 4;
         }
         .button {
           margin-left: 20px;
+        }
+        #search {
+          width: 100%;
+          height: 100%;
         }
       `}</style>
     </nav>

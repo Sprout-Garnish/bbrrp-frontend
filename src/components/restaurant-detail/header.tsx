@@ -10,20 +10,10 @@ const Header: NextPage = () => {
         <Image src="/vercel.svg" width={50} height={30} layout="fixed" />
       </section>
       <section className="nav_section">
+        <button onClick={() => alert("스크랩 되었습니다.")}>스크랩하기</button>
         <Link href="/">
-          <a
-            onClick={() => alert("알림 보기 화면으로 이동합니다.")}
-            className="button"
-          >
-            <Image src="/alarm.webp" width={30} height={30} layout="fixed" />
-          </a>
-        </Link>
-        <Link href="/">
-          <a
-            onClick={() => alert("마이 페이지로 이동합니다.")}
-            className="button"
-          >
-            <Image src="/person.png" width={30} height={30} layout="fixed" />
+          <a onClick={() => alert("마이 페이지로 이동")} className="button">
+            예약하기
           </a>
         </Link>
       </section>
