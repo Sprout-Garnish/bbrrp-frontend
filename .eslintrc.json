@@ -2,6 +2,7 @@
   "extends": "@react-native-community",
   "rules": {
     "quotes": ["error", "double"],
-    "no-extend-native": "off"
+    "no-extend-native": "off",
+    "no-alert": "off"
   }
 }
