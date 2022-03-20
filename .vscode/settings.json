@@ -1,0 +1,6 @@
+{
+    "tailwindCSS.experimental.classRegex": [
+        "(?:tw|classed\\.[a-z]{1,15})\\(*[`'\"](.*[`'\"])\\)*"
+        // "(?:tw|classed[.a-zA-Z<>()]+)\\({0,1}[`'\"](.*[`'\"])\\){0,1}"
+    ]
+}

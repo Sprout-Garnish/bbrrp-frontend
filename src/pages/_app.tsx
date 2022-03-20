@@ -1,9 +1,27 @@
 import "../styles/globals.css";
-import React from "react";
+import "@src/utilities/string";
+import "@src/utilities/array";
+import React, { useState } from "react";
 import type { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { ApolloClientProps, initWithApollo } from "@src/utilities/apollo";
+import { ApolloProvider } from "@apollo/client";
+import Layout from "@src/components/common/layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps, apollo }: AppProps & ApolloClientProps) {
+  // 서버사이드 렌더링으로 인한 오류를 방지하기 위해 사용
+  const [queryClient] = useState(() => new QueryClient());
+  return (
+    <ApolloProvider client={apollo}>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Component {...pageProps} />
+          <ReactQueryDevtools />
+        </Layout>
+      </QueryClientProvider>
+    </ApolloProvider>
+  );
 }
 
-export default MyApp;
+export default initWithApollo(MyApp);
