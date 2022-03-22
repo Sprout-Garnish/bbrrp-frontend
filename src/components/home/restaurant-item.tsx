@@ -3,7 +3,7 @@ import React from "react";
 
 type RestaurantCategory = "일식" | "양식" | "중식" | "한식";
 
-export interface RestaurantItem {
+export interface PRestaurantItem {
   id: string; //기본키
   name: string; //식당 이름
   briefIntro: string; //한 줄 소개
@@ -12,7 +12,7 @@ export interface RestaurantItem {
   mainImg: string; //대표 이미지
 }
 
-const Restaurant: React.FC<RestaurantItem> = ({
+const RestaurantItem: React.FC<PRestaurantItem> = ({
   name,
   briefIntro,
   category,
@@ -36,4 +36,4 @@ const Restaurant: React.FC<RestaurantItem> = ({
   );
 };
 
-export default Restaurant;
+export default RestaurantItem;

@@ -1,8 +1,8 @@
 import React from "react";
-import Restaurant, { RestaurantItem } from "./Restaurant";
+import RestaurantItem, { PRestaurantItem } from "./restaurant-item";
+import { faker } from "@faker-js/faker";
 
-const { faker } = require("@faker-js/faker");
-const mockData: RestaurantItem[] = new Array(20).fill(null).map((_, i) => ({
+const mockData: PRestaurantItem[] = new Array(20).fill(null).map((_, i) => ({
   id: String(i),
   name: faker.lorem.words(),
   briefIntro: faker.lorem.sentence(),
@@ -11,9 +11,9 @@ const mockData: RestaurantItem[] = new Array(20).fill(null).map((_, i) => ({
   mainImg: "randomImage",
 }));
 
-const Restaurants: React.FC = () => {
+const RestaurantList: React.FC = () => {
   const restaurantsToDisplay = mockData.map((item) => (
-    <Restaurant
+    <RestaurantItem
       id={item.id}
       name={item.name}
       briefIntro={item.briefIntro}
@@ -29,4 +29,4 @@ const Restaurants: React.FC = () => {
   );
 };
 
-export default Restaurants;
+export default RestaurantList;

@@ -1,9 +1,9 @@
 import React from "react";
 import type { NextPage } from "next";
-import Restaurants from "../components/home/Restaurants";
+import RestaurantList from "@src/components/home/restaurant-list";
 
 const Home: NextPage = () => {
-  return <Restaurants />;
+  return <RestaurantList />;
 };
 
 export default Home;
