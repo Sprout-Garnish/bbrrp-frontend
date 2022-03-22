@@ -19,7 +19,7 @@ const Restaurant: React.FC<RestaurantItem> = ({
   location,
 }) => {
   return (
-    <>
+    <div>
       <div className="imageBox">
         <Image src="/bistro.jpg" width={200} height={200} layout="fixed" />
       </div>
@@ -32,7 +32,7 @@ const Restaurant: React.FC<RestaurantItem> = ({
           {briefIntro.length <= 200 ? briefIntro : briefIntro.slice(0, 200)}
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

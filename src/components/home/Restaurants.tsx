@@ -1,27 +1,15 @@
 import React from "react";
-import Restaurant from "./restaurant";
-import { RestaurantItem } from "./restaurant";
+import Restaurant, { RestaurantItem } from "./Restaurant";
 
 const { faker } = require("@faker-js/faker");
-const mockData: RestaurantItem[] = [];
-
-const fillMockData = () => {
-  let i: number = 1;
-  while (i <= 20) {
-    const data: RestaurantItem = {
-      id: String(i),
-      name: faker.lorem.words(),
-      briefIntro: faker.lorem.sentence(),
-      category: "일식",
-      location: "서울",
-      mainImg: "randomImage",
-    };
-    mockData.push(data);
-    i++;
-  }
-};
-
-fillMockData();
+const mockData: RestaurantItem[] = new Array(20).fill(null).map((_, i) => ({
+  id: String(i),
+  name: faker.lorem.words(),
+  briefIntro: faker.lorem.sentence(),
+  category: "일식",
+  location: "서울",
+  mainImg: "randomImage",
+}));
 
 const Restaurants: React.FC = () => {
   const restaurantsToDisplay = mockData.map((item) => (
@@ -35,9 +23,9 @@ const Restaurants: React.FC = () => {
     />
   ));
   return (
-    <>
+    <div className="container">
       <div className="main">{restaurantsToDisplay}</div>
-    </>
+    </div>
   );
 };
 
