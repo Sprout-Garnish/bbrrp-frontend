@@ -1,5 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Nullable } from "@src/utilities/types";
+import { useContext } from "react";
+import { BBRRPClientContext } from "../context";
 import { AUTH_MUTATION } from "../graphql/auth";
 import {
   AuthMutation,
@@ -14,9 +16,10 @@ const isLoginSuccess = (data: Nullable<AuthMutation>) => {
 };
 
 /**
- * @description THIS FETCHER IS DEV ONLY
+ * @description THIS HOOK IS DEV ONLY
  */
 export const useDevLogin = () => {
+  const { setLoggedIn } = useContext(BBRRPClientContext);
   const [authMutation, { loading, data: result }] = useMutation<
     AuthMutation,
     AuthMutationVariables
@@ -29,10 +32,17 @@ export const useDevLogin = () => {
         ...Credentials,
       },
     });
-    return isLoginSuccess(res?.data);
+    const success = isLoginSuccess(res?.data);
+    if (success) {
+      setLoggedIn(true);
+    } else {
+      alert("Login failed");
+    }
   };
 
-  const logout = async () => {};
+  const logout = () => {
+    setLoggedIn(false);
+  };
 
   return {
     login,

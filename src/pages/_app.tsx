@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { ApolloClientProps, initWithApollo } from "@src/utilities/apollo";
 import { ApolloProvider } from "@apollo/client";
 import Layout from "@src/components/common/layout";
-import { ClientProvider } from "@modules/client";
+import { BBRRPClientProvider } from "@modules/client";
 
 function MyApp({ Component, pageProps, apollo }: AppProps & ApolloClientProps) {
   // 서버사이드 렌더링으로 인한 오류를 방지하기 위해 사용
@@ -16,12 +16,12 @@ function MyApp({ Component, pageProps, apollo }: AppProps & ApolloClientProps) {
   return (
     <ApolloProvider client={apollo}>
       <QueryClientProvider client={queryClient}>
-        <ClientProvider>
+        <BBRRPClientProvider>
           <Layout>
             <Component {...pageProps} />
             <ReactQueryDevtools />
           </Layout>
-        </ClientProvider>
+        </BBRRPClientProvider>
       </QueryClientProvider>
     </ApolloProvider>
   );
