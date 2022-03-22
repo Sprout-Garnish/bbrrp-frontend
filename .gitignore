@@ -43,3 +43,7 @@ package-lock.json
 
 # Log files
 *.log
+
+# Private files
+private
+credentials.*
