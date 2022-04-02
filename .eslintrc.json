@@ -3,6 +3,7 @@
   "rules": {
     "quotes": ["error", "double"],
     "no-extend-native": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
