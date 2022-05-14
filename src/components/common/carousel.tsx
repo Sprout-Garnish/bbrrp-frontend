@@ -1,42 +1,64 @@
-import React, { Component } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
-export default class SimpleSlider extends Component {
-  render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
+export const CarouselItem = ({ children, width }) => {
+  return (
+    <div className="carousel-item" style={{ width: width }}>
+      {children}
+    </div>
+  );
+};
+
+const Carousel = ({ children }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const updateIndex = (newIndex) => {
+    if (newIndex < 0) {
+      newIndex = React.Children.count(children) - 1;
+    } else if (newIndex >= React.Children.count(children)) {
+      newIndex = 0;
+    }
+
+    setActiveIndex(newIndex);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!paused) {
+        updateIndex(activeIndex + 1);
+      }
+    }, 3000);
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
     };
+  });
 
-    return (
-      <>
-        <h2> Single Item</h2>
-        <Slider {...settings}>
-          <div
-            className="slide"
-            style={{
-              width: "500px",
-              height: "300px",
-              backgroundColor: "red",
-            }}
-          >
-            1
-          </div>
-          <div className="slide">2</div>
-          <style global jsx>{`
-            .slick-list {
-              width: 800px;
-              height: 300px;
-              background-color: orange;
-            }
-          `}</style>
-        </Slider>
-      </>
-    );
-  }
-}
+  const handlers = useSwipeable({
+    onSwipedLeft: () => updateIndex(activeIndex + 1),
+    onSwipedRight: () => updateIndex(activeIndex - 1),
+  });
+
+  return (
+    <div
+      {...handlers}
+      className="carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="inner"
+        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+      >
+        {React.Children.map(children, (child, index) => {
+          return React.cloneElement(child, { width: "100%" });
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default Carousel;
