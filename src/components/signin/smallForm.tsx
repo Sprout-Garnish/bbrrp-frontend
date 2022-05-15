@@ -4,10 +4,7 @@ import { useLogin } from "@modules/client/hooks/useLogin";
 const SmallForm: React.FC = () => {
   const [email, changeEmail] = useState("");
   const [password, changePassword] = useState("");
-  const handleLogin = () => {
-    console.log(email);
-    return useLogin().login(email, password);
-  };
+  const hook = useLogin();
   return (
     <div>
       <div className="space-y-2">
@@ -32,7 +29,7 @@ const SmallForm: React.FC = () => {
       </div>
       <button
         type="submit"
-        onClick={() => handleLogin}
+        onClick={() => hook.login(email, password)}
         className=" w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
       >
         Sign in
