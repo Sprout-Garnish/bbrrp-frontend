@@ -1,8 +1,6 @@
 import React from "react";
-import Email from "./email";
-import Password from "./password";
 import Copyright from "./copyright";
-import Button from "./button";
+import SmallForm from "./smallForm";
 
 const Form: React.FC = () => {
   return (
@@ -13,9 +11,7 @@ const Form: React.FC = () => {
           <p className="text-gray-500">Please sign in to your account.</p>
         </div>
         <div className="space-y-5">
-          <Email />
-          <Password />
-          <Button />
+          <SmallForm />
         </div>
         <Copyright />
       </div>
