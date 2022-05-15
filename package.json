@@ -7,20 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "apollo:codegen": "rm -rf src/api && apollo client:codegen src/api --target=typescript --outputFlat"
+    "apollo:codegen": "rm -rf modules/client/interfaces && apollo client:codegen modules/client/interfaces --target=typescript --outputFlat"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
-    "@types/react-slick": "^0.23.8",
+    "axios": "^0.26.1",
     "clsc": "^1.0.2",
     "clsx": "^1.1.1",
     "faker": "^6.6.6",
     "framer-motion": "^6.2.8",
-    "graphql": "^16.3.0",
+    "graphql": "15.8.0",
     "next": "12.1.0",
     "next-with-apollo": "^5.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.28.1",
     "react-query": "^3.34.16",
     "react-swipeable": "^7.0.0",
     "url-join": "^4.0.1"

@@ -6,7 +6,7 @@ module.exports = {
       name: 'backend',
       url: Constants.GRAPHQL_ENDPOINT,
     },
-    includes: ['./src/**/*.tsx'],
+    includes: ['./src/**/*.{tsx,ts}', './modules/**/*.{tsx,ts}'],
     tagName: 'gql',
   }
 };
