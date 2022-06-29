@@ -5,5 +5,13 @@
     "no-extend-native": "off",
     "no-alert": "off"
   },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  },
   "ignorePatterns": ["modules/client/interfaces/**"]
 }
