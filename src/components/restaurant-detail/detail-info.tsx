@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 interface propsType {
   id: number;
@@ -19,7 +19,13 @@ const DetailInfo = (props: propsType) => {
 
   // }
 
-  return <></>;
+  return (
+    <>
+      <div>{props.name}</div>
+      <div>{props.description}</div>
+      <div>{props.category}</div>
+    </>
+  );
 };
 
 export default DetailInfo;

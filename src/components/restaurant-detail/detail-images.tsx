@@ -5,7 +5,20 @@ interface propsType {
 }
 
 const DetailImages = (props: propsType) => {
-  return <div></div>;
+  props.images.map((image) => console.log(image));
+  return (
+    <>
+      {props.images.map((image) => {
+        return (
+          <>
+            <div>{image.image}</div>
+            <span>{image.name}</span>
+            <span>{image.description}</span>
+          </>
+        );
+      })}
+    </>
+  );
 };
 
 export default DetailImages;

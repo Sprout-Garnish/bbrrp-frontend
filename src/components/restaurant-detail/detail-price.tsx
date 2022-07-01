@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 interface propsType {
   id: number;
@@ -7,18 +7,15 @@ interface propsType {
 }
 
 const DetailPrice = (props: propsType) => {
-  const ShowBookPrice = () => {
-    return <div></div>;
-  };
-
-  const ShowMeanPrice = () => {
-    return <div></div>;
-  };
+  const reservation_price = props.reservation_price;
+  const info = props.info;
 
   return (
     <>
-      <ShowBookPrice />
-      <ShowMeanPrice />
+      <div>
+        <div>예약비용 : {reservation_price}원</div>
+        <span>{info}</span>
+      </div>
     </>
   );
 };

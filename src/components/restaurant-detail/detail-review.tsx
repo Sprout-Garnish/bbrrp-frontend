@@ -10,11 +10,26 @@ const DetailReview = (props: propsType) => {
     return (
       <>
         <div>
-          <span>{review.user}</span>
-          <span>{review.timestamp}</span>
-          <span>좋아요 수 : {review.likes}</span>
-          <span>{review.title}</span>
-          <span>{review.content}</span>
+          <span>
+            {review.user}
+            <br />
+          </span>
+          <span>
+            {review.timestamp}
+            <br />
+          </span>
+          <span>
+            좋아요 수 : {review.likes}
+            <br />
+          </span>
+          <span>
+            {review.title}
+            <br />
+          </span>
+          <span>
+            {review.content}
+            <br />
+          </span>
           <div>
             {review.images.map((image) => {
               return (
