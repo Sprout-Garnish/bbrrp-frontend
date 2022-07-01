@@ -34,9 +34,11 @@ const DetailReview = (props: propsType) => {
             {review.images.map((image) => {
               return (
                 <>
-                  <h4>{image.name}</h4>
-                  <h5>{image.description}</h5>
-                  <div>{image.image}</div>
+                  <div key={image.id}>
+                    <h4>{image.name}</h4>
+                    <h5>{image.description}</h5>
+                    <div>{image.image}</div>
+                  </div>
                 </>
               );
             })}

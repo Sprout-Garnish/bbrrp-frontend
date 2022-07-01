@@ -22,6 +22,7 @@ const DetailInfo = (props: propsType) => {
   return (
     <>
       <div>{props.name}</div>
+      <div>{props.location_raw}</div>
       <div>{props.description}</div>
       <div>{props.category}</div>
     </>
