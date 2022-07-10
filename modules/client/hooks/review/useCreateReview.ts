@@ -1,9 +1,9 @@
 import {useMutation} from "@apollo/client";
-import {CREATE_REIVEW_MUTATION} from "@modules/client/graphql/reviews/create-review";
+import { CreateReviewDocument, CreateReviewMutation, CreateReviewMutationVariables } from "@modules/client/graphql/generated/schema";
 
 
 export const useCreateReview = () => {
-    const [createReview, {loading,data,error}] = useMutation(CREATE_REIVEW_MUTATION);
+    const [createReview, {loading,data,error}] = useMutation<CreateReviewMutation, CreateReviewMutationVariables>(CreateReviewDocument);
 
     return {
         createReview,

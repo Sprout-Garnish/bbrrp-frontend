@@ -1,0 +1,7 @@
+
+mutation DeleteRestaurant($where: RestaurantWhereUniqueInput!) {
+  deleteRestaurant(where: $where) {
+    id
+    name
+  }
+}

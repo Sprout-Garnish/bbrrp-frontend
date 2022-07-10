@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { REVIEW_QUERY } from "@modules/client/graphql/reviews/review";
+import { ReviewDocument, ReviewQuery, ReviewQueryVariables } from "@modules/client/graphql/generated/schema";
 
-export const useResview = (id: string) => {
-    const { data, loading, refetch, error } = useQuery(REVIEW_QUERY, { variables: { where: { id } } });
+export const useReview = (id: string) => {
+    const { data, loading, refetch, error } = useQuery<ReviewQuery, ReviewQueryVariables>(ReviewDocument, { variables: { where: { id } } });
   
     return {
       data,

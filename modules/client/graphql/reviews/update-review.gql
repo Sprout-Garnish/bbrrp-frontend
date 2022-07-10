@@ -1,0 +1,10 @@
+
+mutation UpdateReview(
+  $where: ReviewWhereUniqueInput!
+  $data: ReviewUpdateInput!
+) {
+  updateReview(where: $where, data: $data) {
+    id
+    title
+  }
+}

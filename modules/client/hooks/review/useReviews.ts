@@ -1,9 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { REVIEWS_QUERY } from "../../graphql/reviews/reviews";
+import { ReviewsDocument, ReviewsQuery, ReviewsQueryVariables } from "@modules/client/graphql/generated/schema";
 
-//응애 options type모르겠어
-export const useRestaurants = (options?: any) => {
-    const { data, loading, refetch, error } = useQuery(REVIEWS_QUERY, { variables: options });
+export const useReviews = (options?: ReviewsQueryVariables) => {
+    const { data, loading, refetch, error } = useQuery<ReviewsQuery, ReviewsQueryVariables>(ReviewsDocument, { variables: options });
   
     return {
       data,

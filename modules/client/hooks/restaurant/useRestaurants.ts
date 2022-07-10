@@ -1,15 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { RESTAURANTS_QUERY } from "../../graphql/restaurant/restaurants";
-import {
-  RestaurantsQuery,
-  RestaurantsQueryVariables,
-} from "../../interfaces/RestaurantsQuery";
+import { RestaurantsDocument, RestaurantsQuery, RestaurantsQueryVariables } from "@modules/client/graphql/generated/schema";
 
 export const useRestaurants = (options?: RestaurantsQueryVariables) => {
   const { data, loading, refetch, error } = useQuery<
     RestaurantsQuery,
     RestaurantsQueryVariables
-  >(RESTAURANTS_QUERY, { variables: options });
+  >(RestaurantsDocument, { variables: options });
 
   return {
     data,
