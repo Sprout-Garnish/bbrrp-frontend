@@ -5,13 +5,19 @@ const RestaurantCarousel = () => {
     <>
       <Carousel>
         <CarouselItem>
-          <img src="https://picsum.photos/200/300?random=1"></img>
+          <img src="/carousel-img.jpg" className="min-w-full"></img>
         </CarouselItem>
         <CarouselItem>
-          <img src="https://picsum.photos/200/300?random=2"></img>
+          <img
+            src="https://picsum.photos/800/250?random=2"
+            className="min-w-full"
+          ></img>
         </CarouselItem>
         <CarouselItem>
-          <img src="https://picsum.photos/200/300?random=3"></img>
+          <img
+            src="https://picsum.photos/800/250?random=3"
+            className="min-w-full"
+          ></img>
         </CarouselItem>
       </Carousel>
     </>
