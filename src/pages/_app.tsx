@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/carousel.css";
 import "@src/utilities/string";
 import "@src/utilities/array";
 import React, { useState } from "react";
