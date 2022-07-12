@@ -15,6 +15,8 @@ module.exports = {
 
       // Table/ review/ location- #ffb42e
       orange: "#ffb42e",
+
+      white: "#ffffff"
     },
     extend: {},
   },

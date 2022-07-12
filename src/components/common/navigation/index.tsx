@@ -15,7 +15,7 @@ const Navigation = () => {
   const router = useRouter();
   const isMyPage = router.pathname.startsWith("/users");
   return (
-    <NavBox className="h-52 bg-whitesmoke flex-row">
+    <NavBox className="h-52 bg-white flex-row">
       <NavItemSection flex={undefinedIfFalsy(isMyPage, 1)}>
         <NavMenus />
       </NavItemSection>

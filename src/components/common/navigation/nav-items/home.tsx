@@ -10,7 +10,7 @@ const HomeNavItems = () => {
           type="text"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
-          className="border-b-2 border-lemon w-80 h-16 bg-whitesmoke text-xl"
+          className="border-b-2 border-lemon w-80 h-16 bg-white text-xl"
         />
       </form>
       <Image
