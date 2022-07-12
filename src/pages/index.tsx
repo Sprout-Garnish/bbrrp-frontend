@@ -9,8 +9,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Sidebar />
-      <div>
-        <LoginButton />
+      <div className="fixed bottom-20 left-20">
+        <LoginButton /> {/*개발용 로그인 버튼*/}
       </div>
       <RestaurantCarousel />
       <RestaurantList />
