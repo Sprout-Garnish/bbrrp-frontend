@@ -37,4 +37,12 @@
   font-weight: normal;
 }
 
+.Georgia {
+  font-family:"Georgia"
+}
+
+.Avenir {
+  font-family:"Avenir"
+}
+
 @tailwind utilities;
