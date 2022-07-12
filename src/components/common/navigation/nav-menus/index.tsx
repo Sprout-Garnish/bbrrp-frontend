@@ -10,7 +10,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ title }) => {
     <Link href="/">
       <div
         onClick={() => alert("해당 페이지로 이동합니다.")}
-        className=" Avenir text-4xl bg-white px-8 py-8"
+        className=" Georgia text-xl text-khaki bg-white px-8 py-4"
       >
         {title}
       </div>
@@ -21,9 +21,9 @@ const NavMenu: React.FC<NavMenuProps> = ({ title }) => {
 const NavMenus: React.FC = () => {
   return (
     <>
-      {["Product", "Introduce", "Image"].map((item) => (
-        <NavMenu title={item} />
-      ))}
+      <NavMenu title="Product" />
+      <NavMenu title="Introduce" />
+      <NavMenu title="Image" />
     </>
   );
 };

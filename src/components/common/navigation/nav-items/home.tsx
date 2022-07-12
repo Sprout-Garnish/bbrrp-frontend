@@ -5,18 +5,18 @@ const HomeNavItems = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   return (
     <>
-      <form className="mx-4">
+      <form className="mx-4 py-5">
         <input
           type="text"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
-          className="border-b-2 border-lemon w-80 h-16 bg-white text-xl"
+          className=" outline-none border-b-2 border-lemon w-64 h-auto bg-white text-lg text-khaki"
         />
       </form>
       <Image
         src="/search.png"
-        width={60}
-        height={60}
+        width={25}
+        height={25}
         layout="fixed"
         onClick={() => alert("검색을 진행합니다.")}
       />
