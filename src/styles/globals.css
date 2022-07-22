@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 .carousel {
   overflow: hidden;
@@ -32,3 +31,40 @@
   background-color: green;
   color: #fff;
 }
+@font-face {
+  font-family: 'Georgia';
+  src: url('../../public/fonts/georgia/Georgia.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('../../public/fonts/georgia/Georgia Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('../../public/fonts/georgia/Georgia Bold Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('../../public/fonts/georgia/Georgia Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  /* Avenir Next LT Pro */
+  font-family: 'Avenir';
+  src: url('../../public/fonts/avenir/26301410506.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@tailwind utilities;

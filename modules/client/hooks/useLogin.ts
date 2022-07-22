@@ -20,6 +20,7 @@ export const useLogin = () => {
     });
     const success = isLoginSuccess(res?.data);
     if (success) {
+      alert("Login success");
       setLoggedIn(true);
     } else {
       alert("Login failed");

@@ -15,12 +15,12 @@ export const useDevLogin = () => {
   >(AuthDocument);
 
   const login = async () => {
-    const Credentials = require("@private/credentials");
-    const res = await authMutation({
-      variables: {
-        ...Credentials,
-      },
-    });
+    // const Credentials = require("@private/credentials");
+    // const res = await authMutation({
+    //   variables: {
+    //     ...Credentials,
+    //   },
+    // });
     const success = isLoginSuccess(res?.data);
     if (success) {
       setLoggedIn(true);
