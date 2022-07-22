@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 
+// https://medium.com/tinyso/how-to-create-the-responsive-and-swipeable-carousel-slider-component-in-react-99f433364aa0
+
 export const CarouselItem = ({ children, width }) => {
   return (
-    <div className="carousel-item" style={{ width: width }}>
+    <div
+      className="inline-flex items-center justify-center bg-white decoration-white"
+      style={{ width: width }}
+    >
       {children}
     </div>
   );
@@ -43,21 +48,45 @@ const Carousel = ({ children }) => {
   });
 
   return (
-    <div
-      {...handlers}
-      className="carousel"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <>
+      {" "}
       <div
-        className="inner"
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        {...handlers}
+        className="overflow-hidden relative"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
       >
-        {React.Children.map(children, (child, index) => {
-          return React.cloneElement(child, { width: "100%" });
-        })}
+        <div className="flex justify-center">
+          <button
+            className="btn btn-circle btn-outline absolute z-10 left-10 top-1/2"
+            style={{}}
+            onClick={() => {
+              updateIndex(activeIndex - 1);
+            }}
+          >
+            ❮
+          </button>
+          <button
+            className="btn btn-circle btn-outline absolute z-10 right-10 top-1/2"
+            onClick={() => {
+              updateIndex(activeIndex + 1);
+            }}
+          >
+            ❯
+          </button>
+        </div>
+        <div
+          className="inner"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        >
+          {React.Children.map(children, (child, index) => {
+            return React.cloneElement(child, {
+              width: "100%",
+            });
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
