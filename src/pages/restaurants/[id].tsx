@@ -1,5 +1,4 @@
 import React from "react";
-import { faker } from "@faker-js/faker";
 import "@src/components/restaurant-detail/detail-images";
 import DetailImages from "@src/components/restaurant-detail/detail-images";
 import DetailInfo from "@src/components/restaurant-detail/detail-info";

@@ -14,6 +14,7 @@ const mockData: PRestaurantItem[] = new Array(20).fill(null).map((_, i) => ({
 const RestaurantList: React.FC = () => {
   const restaurantsToDisplay = mockData.map((item) => (
     <RestaurantItem
+      key={item.id}
       id={item.id}
       name={item.name}
       briefIntro={item.briefIntro}
