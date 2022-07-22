@@ -1,0 +1,13 @@
+# This configuration file is used by "graphql-codegen" library
+#
+# See: https://www.graphql-code-generator.com/
+
+overwrite: true
+schema: "https://bbrrp-backend-production.up.railway.app/api/graphql"
+documents: "modules/client/graphql/**/*.gql"
+generates:
+  modules/client/graphql/generated/schema.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

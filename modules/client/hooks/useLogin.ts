@@ -1,11 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { BBRRPClientContext } from "../context";
-import { AUTH_MUTATION } from "../graphql/auth";
-import {
-  AuthMutation,
-  AuthMutationVariables,
-} from "../interfaces/AuthMutation";
+import { AuthDocument, AuthMutation, AuthMutationVariables } from "../graphql/generated/schema";
 import { isLoginSuccess } from "../shared/helpers";
 
 export const useLogin = () => {
@@ -13,7 +9,7 @@ export const useLogin = () => {
   const [authMutation, { loading, data: result }] = useMutation<
     AuthMutation,
     AuthMutationVariables
-  >(AUTH_MUTATION);
+  >(AuthDocument);
 
   const login = async (email: string, password: string) => {
     const res = await authMutation({

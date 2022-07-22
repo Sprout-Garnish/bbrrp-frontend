@@ -1,0 +1,6 @@
+mutation DeleteReview($where: ReviewWhereUniqueInput!) {
+  deleteReview(where: $where) {
+    id
+    title
+  }
+}

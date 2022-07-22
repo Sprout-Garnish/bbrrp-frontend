@@ -1,0 +1,9 @@
+mutation UpdateRestaurant(
+  $where: RestaurantWhereUniqueInput!
+  $data: RestaurantUpdateInput!
+) {
+  updateRestaurant(where: $where, data: $data) {
+    id
+    name
+  }
+}
