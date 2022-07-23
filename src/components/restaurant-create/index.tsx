@@ -5,6 +5,7 @@ import DescriptionInput from "./descriptionInput";
 import CategoryInput from "./categoryInput";
 import ReservationPriceInput from "./reservationPriceInput";
 import InfoInput from "./infoInput";
+import ImagesInput from "./imagesInput";
 
 interface RestaurantCreateProps {
   isUpdating: boolean;
@@ -25,8 +26,8 @@ const RestaurantCreate: React.FC<RestaurantCreateProps> = ({ isUpdating }) => {
     owner: undefined, // 사용자 정보에 따라 자동 채워짐
     reservationPrice: undefined,
     info: undefined,
-    images: undefined,
   });
+  const [images, setImages] = useState<string[]>([]);
   return (
     <>
       <form action="" className="flex-auto space-y-5 w-100" method="post">
@@ -38,8 +39,9 @@ const RestaurantCreate: React.FC<RestaurantCreateProps> = ({ isUpdating }) => {
           setInputForm={setInputForm}
         />
         <InfoInput inputForm={inputForm} setInputForm={setInputForm} />
-        <div>이미지 입력받기</div>
+        <ImagesInput images={images} setImages={setImages} />
         <button className="btn btn-primary">제출</button>
+        <br />
       </form>
     </>
   );
