@@ -1,4 +1,5 @@
 import Carousel, { CarouselItem } from "../common/carousel";
+import React from "react";
 
 const RestaurantCarousel = () => {
   return (

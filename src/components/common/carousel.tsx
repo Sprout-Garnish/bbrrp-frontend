@@ -3,22 +3,26 @@ import { useSwipeable } from "react-swipeable";
 
 // https://medium.com/tinyso/how-to-create-the-responsive-and-swipeable-carousel-slider-component-in-react-99f433364aa0
 
-export const CarouselItem = ({ children, width }) => {
+interface PCarouselItem {}
+
+export const CarouselItem: React.FC<PCarouselItem> = ({ children }) => {
   return (
     <div
       className="inline-flex items-center justify-center bg-white decoration-white"
-      style={{ width: width }}
+      style={{ width: "100%" }}
     >
       {children}
     </div>
   );
 };
 
-const Carousel = ({ children }) => {
+interface PCarousel {}
+
+const Carousel: React.FC<PCarousel> = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const updateIndex = (newIndex) => {
+  const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
       newIndex = React.Children.count(children) - 1;
     } else if (newIndex >= React.Children.count(children)) {
@@ -79,10 +83,8 @@ const Carousel = ({ children }) => {
           className="inner"
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
-          {React.Children.map(children, (child, index) => {
-            return React.cloneElement(child, {
-              width: "100%",
-            });
+          {React.Children.map(children, (child) => {
+            return <>{child}</>;
           })}
         </div>
       </div>
