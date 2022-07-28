@@ -1,7 +1,5 @@
 module.exports = {
-  content: [
-    './src/**/*.tsx',
-  ],
+  content: ["./src/**/*.tsx"],
   theme: {
     colors: {
       // Lemon table - #ffe12e
@@ -15,8 +13,12 @@ module.exports = {
 
       // Table/ review/ location- #ffb42e
       orange: "#ffb42e",
+
+      black: "#000000",
+
+      white: "#FFFFFF",
     },
     extend: {},
   },
-  plugins: [require('daisyui')],
-}
+  plugins: [require("daisyui")],
+};

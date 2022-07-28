@@ -9,12 +9,18 @@ interface Props {
 const NameInput: React.FC<Props> = ({ inputForm, setInputForm }) => {
   return (
     <>
-      <div>
-        Restaurant Name:
+      <div className="flex flex-row w-full max-w-full">
+        <p
+          className="text-black flex-auto w-full font-bold"
+          style={{ flex: 1 }}
+        >
+          이름
+        </p>
         <input
           type="text"
-          placeholder="Type here"
-          className="input input-bordered input-info w-full max-w-xs"
+          placeholder="레스토랑의 이름을 입력하세요..."
+          className="input input-bordered bg-white flex-auto w-full"
+          style={{ flex: 8 }}
           value={inputForm.name as string | undefined}
           onChange={(e) =>
             setInputForm({

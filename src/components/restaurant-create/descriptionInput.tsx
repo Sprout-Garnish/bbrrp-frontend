@@ -9,10 +9,16 @@ interface Props {
 const DescriptionInput: React.FC<Props> = ({ inputForm, setInputForm }) => {
   return (
     <>
-      <div>
-        Description:
+      <div className="flex flex-row">
+        <p
+          className="text-black font-bold justify-center align-middle"
+          style={{ flex: 1 }}
+        >
+          설명
+        </p>
         <textarea
-          className="textarea textarea-info w-full"
+          className="textarea textarea-bordered w-full bg-white"
+          style={{ flex: 8 }}
           value={inputForm.description as string | undefined}
           onChange={(e) =>
             setInputForm({

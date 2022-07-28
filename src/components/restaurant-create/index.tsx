@@ -6,6 +6,8 @@ import CategoryInput from "./categoryInput";
 import ReservationPriceInput from "./reservationPriceInput";
 import InfoInput from "./infoInput";
 import ImagesInput from "./imagesInput";
+import ButtonBox from "./buttonBox";
+import ImageBox from "./imageBox";
 
 interface RestaurantCreateProps {
   isUpdating: boolean;
@@ -30,17 +32,39 @@ const RestaurantCreate: React.FC<RestaurantCreateProps> = ({ isUpdating }) => {
   const [images, setImages] = useState<string[]>([]);
   return (
     <>
-      <form action="" className="flex-auto space-y-5 w-100" method="post">
-        <NameInput inputForm={inputForm} setInputForm={setInputForm} />
-        <DescriptionInput inputForm={inputForm} setInputForm={setInputForm} />
-        <CategoryInput inputForm={inputForm} setInputForm={setInputForm} />
-        <ReservationPriceInput
-          inputForm={inputForm}
-          setInputForm={setInputForm}
-        />
-        <InfoInput inputForm={inputForm} setInputForm={setInputForm} />
-        <ImagesInput images={images} setImages={setImages} />
-        <button className="btn btn-primary">제출</button>
+      <form
+        action=""
+        className="flex-auto w-100"
+        method="post"
+        style={{ marginLeft: 20 }}
+      >
+        <ButtonBox />
+        <div className="flex flex-col space-y-4 w-6/12">
+          <NameInput inputForm={inputForm} setInputForm={setInputForm} />
+          <hr />
+          <CategoryInput inputForm={inputForm} setInputForm={setInputForm} />
+          <hr />
+          <DescriptionInput inputForm={inputForm} setInputForm={setInputForm} />
+          <hr />
+          <ImagesInput images={images} setImages={setImages} />
+          <hr />
+          <ReservationPriceInput
+            inputForm={inputForm}
+            setInputForm={setInputForm}
+          />
+          <hr />
+          <InfoInput />
+          <hr />
+          <div className="flex flex-row space-x-4">
+            {images.map((img) => (
+              <ImageBox
+                images={images}
+                setImages={setImages}
+                imageString={img}
+              />
+            ))}
+          </div>
+        </div>
         <br />
       </form>
     </>

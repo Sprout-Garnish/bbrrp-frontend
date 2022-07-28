@@ -12,12 +12,18 @@ const ReservationPriceInput: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div>
-        reservationPrice:
+      <div className="flex flex-row w-full max-w-full">
+        <p
+          className="text-black font-bold justify-center align-middle"
+          style={{ flex: 1 }}
+        >
+          예약가격
+        </p>
         <input
           type="number"
           placeholder="Type here"
-          className="input input-bordered input-info w-full max-w-xs"
+          style={{ flex: 8 }}
+          className="input input-bordered w-full bg-white"
           value={inputForm.reservationPrice as number | undefined}
           onChange={(e) =>
             setInputForm({

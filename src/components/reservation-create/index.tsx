@@ -26,6 +26,8 @@ const ReservationCreate: React.FC<ReservationCreateProps> = ({
       <form action="" className="flex-auto space-y-5 w-100" method="post">
         <p>Reservation Fee: {inputForm.reservationFee}</p>
         <p>Refund: {inputForm.refund}</p>
+        <input type="date" name="selectDate" />
+        <input type="time" name="selectTime" />
         <button
           type="submit"
           onClick={() => alert("예약되었습니다.")}
