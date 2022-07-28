@@ -3,6 +3,7 @@ import { gql, useQuery, useMutation } from "@apollo/client";
 import Profile from "@src/components/mypage/profile";
 import MyReservations from "@src/components/mypage/myreservations";
 import MyBookmarks from "@src/components/mypage/mybookmarks";
+import Footer from "@src/components/common/footer";
 // https://defineall.tistory.com/923
 
 const FEED_QUERY = gql`
@@ -22,8 +23,7 @@ const FEED_QUERY = gql`
           category
           images {
             image {
-              width
-              height
+              url
             }
           }
           imagesCount
@@ -35,8 +35,7 @@ const FEED_QUERY = gql`
         category
         images {
           image {
-            width
-            height
+            url
           }
         }
         imagesCount
@@ -48,16 +47,24 @@ const FEED_QUERY = gql`
 
 const MyPage = () => {
   const { data } = useQuery(FEED_QUERY);
+
   console.log(data);
   return (
     <>
       {data && (
-        <div>
-          <div>마이페이지</div>
-          <Profile data={data} />
-          <MyReservations data={data} />
-          <MyBookmarks data={data} />
-        </div>
+        <>
+          <div className="relative w-full">
+            <div className="font-bold text-4xl mx-36 my-12 font-bold">
+              마이페이지
+            </div>
+            <div className="mx-36">
+              <Profile data={data} />
+              <MyReservations className="left-0" data={data} />
+              <MyBookmarks className="left-0" data={data} />
+            </div>
+          </div>
+          <Footer />
+        </>
       )}
     </>
   );
