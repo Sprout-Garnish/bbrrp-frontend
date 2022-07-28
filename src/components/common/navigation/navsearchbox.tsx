@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-const HomeNavItems = () => {
+const NavItems = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   return (
     <>
@@ -24,4 +24,4 @@ const HomeNavItems = () => {
   );
 };
 
-export default HomeNavItems;
+export default NavItems;
