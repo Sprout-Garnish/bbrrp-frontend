@@ -1,0 +1,6 @@
+
+mutation DeleteReservation($where: ReservationWhereUniqueInput!) {
+  deleteReservation(where: $where) {
+    id
+  }
+}

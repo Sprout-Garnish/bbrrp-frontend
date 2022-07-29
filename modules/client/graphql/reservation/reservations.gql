@@ -1,0 +1,29 @@
+
+query Reservations(
+  $where: ReservationWhereInput! = {}
+  $orderBy: [ReservationOrderByInput!]! = []
+  $take: Int
+  $skip: Int! = 0
+) {
+  reservations(
+    where: $where
+    orderBy: $orderBy
+    take: $take 
+    skip: $skip
+  ) {
+    id
+    time
+    reservationFee
+    refund
+    user {
+      id
+      name
+      nickname
+    }
+    restaurant {
+      id
+      description
+      info
+    }
+  }
+}

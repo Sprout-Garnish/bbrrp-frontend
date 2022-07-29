@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const Profile = (props) => {
+const Profile: React.FC = (props) => {
   return (
     <div>
       <div className="flex">

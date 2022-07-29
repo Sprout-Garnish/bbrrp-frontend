@@ -1,15 +1,15 @@
 import { useMutation } from "@apollo/client";
-import { DELETE_RESTAURANT_MUTATION } from "@modules/client/graphql/restaurant/delete-restaurant";
 import {
+  DeleteRestaurantDocument,
   DeleteRestaurantMutation,
   DeleteRestaurantMutationVariables,
-} from "@modules/client/interfaces/DeleteRestaurantMutation";
+} from "@modules/client/graphql/generated/schema";
 
 export const useDeleteRestaurant = () => {
   const [deleteRestaurant, { loading, data, error }] = useMutation<
     DeleteRestaurantMutation,
     DeleteRestaurantMutationVariables
-  >(DELETE_RESTAURANT_MUTATION);
+  >(DeleteRestaurantDocument);
 
   return {
     deleteRestaurant,

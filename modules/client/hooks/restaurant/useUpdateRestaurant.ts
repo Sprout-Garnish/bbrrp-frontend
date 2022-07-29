@@ -1,15 +1,15 @@
 import { useMutation } from "@apollo/client";
-import { UPDATE_RESTAURANT_MUTATION } from "@modules/client/graphql/restaurant/update-restaurant";
 import {
+  UpdateRestaurantDocument,
   UpdateRestaurantMutation,
   UpdateRestaurantMutationVariables,
-} from "@modules/client/interfaces/UpdateRestaurantMutation";
+} from "@modules/client/graphql/generated/schema";
 
 export const useUpdateRestaurant = () => {
   const [updateRestaurant, { loading, data, error }] = useMutation<
     UpdateRestaurantMutation,
     UpdateRestaurantMutationVariables
-  >(UPDATE_RESTAURANT_MUTATION);
+  >(UpdateRestaurantDocument);
 
   return {
     updateRestaurant,

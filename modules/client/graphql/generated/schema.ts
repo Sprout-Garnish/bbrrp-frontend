@@ -1152,6 +1152,45 @@ export type AuthMutationVariables = Exact<{
 
 export type AuthMutation = { __typename?: 'Mutation', authenticateUserWithPassword?: { __typename: 'UserAuthenticationWithPasswordFailure', message: string } | { __typename: 'UserAuthenticationWithPasswordSuccess', sessionToken: string, item: { __typename?: 'User', name?: string | null, id: string } } | null };
 
+export type CreateReservationMutationVariables = Exact<{
+  data: ReservationCreateInput;
+}>;
+
+
+export type CreateReservationMutation = { __typename?: 'Mutation', createReservation?: { __typename?: 'Reservation', id: string } | null };
+
+export type DeleteReservationMutationVariables = Exact<{
+  where: ReservationWhereUniqueInput;
+}>;
+
+
+export type DeleteReservationMutation = { __typename?: 'Mutation', deleteReservation?: { __typename?: 'Reservation', id: string } | null };
+
+export type ReservationQueryVariables = Exact<{
+  where: ReservationWhereUniqueInput;
+}>;
+
+
+export type ReservationQuery = { __typename?: 'Query', reservation?: { __typename?: 'Reservation', id: string, time?: any | null, reservationFee?: number | null, refund?: number | null, user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null } | null, restaurant?: { __typename?: 'Restaurant', id: string, description?: string | null, info?: string | null } | null } | null };
+
+export type ReservationsQueryVariables = Exact<{
+  where?: ReservationWhereInput;
+  orderBy?: Array<ReservationOrderByInput> | ReservationOrderByInput;
+  take?: InputMaybe<Scalars['Int']>;
+  skip?: Scalars['Int'];
+}>;
+
+
+export type ReservationsQuery = { __typename?: 'Query', reservations?: Array<{ __typename?: 'Reservation', id: string, time?: any | null, reservationFee?: number | null, refund?: number | null, user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null } | null, restaurant?: { __typename?: 'Restaurant', id: string, description?: string | null, info?: string | null } | null }> | null };
+
+export type UpdateReservationMutationVariables = Exact<{
+  where: ReservationWhereUniqueInput;
+  data: ReservationUpdateInput;
+}>;
+
+
+export type UpdateReservationMutation = { __typename?: 'Mutation', updateReservation?: { __typename?: 'Reservation', id: string } | null };
+
 export type CreateRestaurantMutationVariables = Exact<{
   data: RestaurantCreateInput;
 }>;
@@ -1275,6 +1314,205 @@ export function useAuthMutation(baseOptions?: Apollo.MutationHookOptions<AuthMut
 export type AuthMutationHookResult = ReturnType<typeof useAuthMutation>;
 export type AuthMutationResult = Apollo.MutationResult<AuthMutation>;
 export type AuthMutationOptions = Apollo.BaseMutationOptions<AuthMutation, AuthMutationVariables>;
+export const CreateReservationDocument = gql`
+    mutation CreateReservation($data: ReservationCreateInput!) {
+  createReservation(data: $data) {
+    id
+  }
+}
+    `;
+export type CreateReservationMutationFn = Apollo.MutationFunction<CreateReservationMutation, CreateReservationMutationVariables>;
+
+/**
+ * __useCreateReservationMutation__
+ *
+ * To run a mutation, you first call `useCreateReservationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateReservationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createReservationMutation, { data, loading, error }] = useCreateReservationMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateReservationMutation(baseOptions?: Apollo.MutationHookOptions<CreateReservationMutation, CreateReservationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateReservationMutation, CreateReservationMutationVariables>(CreateReservationDocument, options);
+      }
+export type CreateReservationMutationHookResult = ReturnType<typeof useCreateReservationMutation>;
+export type CreateReservationMutationResult = Apollo.MutationResult<CreateReservationMutation>;
+export type CreateReservationMutationOptions = Apollo.BaseMutationOptions<CreateReservationMutation, CreateReservationMutationVariables>;
+export const DeleteReservationDocument = gql`
+    mutation DeleteReservation($where: ReservationWhereUniqueInput!) {
+  deleteReservation(where: $where) {
+    id
+  }
+}
+    `;
+export type DeleteReservationMutationFn = Apollo.MutationFunction<DeleteReservationMutation, DeleteReservationMutationVariables>;
+
+/**
+ * __useDeleteReservationMutation__
+ *
+ * To run a mutation, you first call `useDeleteReservationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteReservationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteReservationMutation, { data, loading, error }] = useDeleteReservationMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteReservationMutation(baseOptions?: Apollo.MutationHookOptions<DeleteReservationMutation, DeleteReservationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteReservationMutation, DeleteReservationMutationVariables>(DeleteReservationDocument, options);
+      }
+export type DeleteReservationMutationHookResult = ReturnType<typeof useDeleteReservationMutation>;
+export type DeleteReservationMutationResult = Apollo.MutationResult<DeleteReservationMutation>;
+export type DeleteReservationMutationOptions = Apollo.BaseMutationOptions<DeleteReservationMutation, DeleteReservationMutationVariables>;
+export const ReservationDocument = gql`
+    query Reservation($where: ReservationWhereUniqueInput!) {
+  reservation(where: $where) {
+    id
+    time
+    reservationFee
+    refund
+    user {
+      id
+      name
+      nickname
+    }
+    restaurant {
+      id
+      description
+      info
+    }
+  }
+}
+    `;
+
+/**
+ * __useReservationQuery__
+ *
+ * To run a query within a React component, call `useReservationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useReservationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useReservationQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useReservationQuery(baseOptions: Apollo.QueryHookOptions<ReservationQuery, ReservationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ReservationQuery, ReservationQueryVariables>(ReservationDocument, options);
+      }
+export function useReservationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReservationQuery, ReservationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ReservationQuery, ReservationQueryVariables>(ReservationDocument, options);
+        }
+export type ReservationQueryHookResult = ReturnType<typeof useReservationQuery>;
+export type ReservationLazyQueryHookResult = ReturnType<typeof useReservationLazyQuery>;
+export type ReservationQueryResult = Apollo.QueryResult<ReservationQuery, ReservationQueryVariables>;
+export const ReservationsDocument = gql`
+    query Reservations($where: ReservationWhereInput! = {}, $orderBy: [ReservationOrderByInput!]! = [], $take: Int, $skip: Int! = 0) {
+  reservations(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
+    id
+    time
+    reservationFee
+    refund
+    user {
+      id
+      name
+      nickname
+    }
+    restaurant {
+      id
+      description
+      info
+    }
+  }
+}
+    `;
+
+/**
+ * __useReservationsQuery__
+ *
+ * To run a query within a React component, call `useReservationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useReservationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useReservationsQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useReservationsQuery(baseOptions?: Apollo.QueryHookOptions<ReservationsQuery, ReservationsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ReservationsQuery, ReservationsQueryVariables>(ReservationsDocument, options);
+      }
+export function useReservationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReservationsQuery, ReservationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ReservationsQuery, ReservationsQueryVariables>(ReservationsDocument, options);
+        }
+export type ReservationsQueryHookResult = ReturnType<typeof useReservationsQuery>;
+export type ReservationsLazyQueryHookResult = ReturnType<typeof useReservationsLazyQuery>;
+export type ReservationsQueryResult = Apollo.QueryResult<ReservationsQuery, ReservationsQueryVariables>;
+export const UpdateReservationDocument = gql`
+    mutation UpdateReservation($where: ReservationWhereUniqueInput!, $data: ReservationUpdateInput!) {
+  updateReservation(where: $where, data: $data) {
+    id
+  }
+}
+    `;
+export type UpdateReservationMutationFn = Apollo.MutationFunction<UpdateReservationMutation, UpdateReservationMutationVariables>;
+
+/**
+ * __useUpdateReservationMutation__
+ *
+ * To run a mutation, you first call `useUpdateReservationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateReservationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateReservationMutation, { data, loading, error }] = useUpdateReservationMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateReservationMutation(baseOptions?: Apollo.MutationHookOptions<UpdateReservationMutation, UpdateReservationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateReservationMutation, UpdateReservationMutationVariables>(UpdateReservationDocument, options);
+      }
+export type UpdateReservationMutationHookResult = ReturnType<typeof useUpdateReservationMutation>;
+export type UpdateReservationMutationResult = Apollo.MutationResult<UpdateReservationMutation>;
+export type UpdateReservationMutationOptions = Apollo.BaseMutationOptions<UpdateReservationMutation, UpdateReservationMutationVariables>;
 export const CreateRestaurantDocument = gql`
     mutation CreateRestaurant($data: RestaurantCreateInput!) {
   createRestaurant(data: $data) {

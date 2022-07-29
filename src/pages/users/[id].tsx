@@ -1,8 +1,8 @@
 import React from "react";
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import Profile from "@src/components/mypage/profile";
 import MyReservations from "@src/components/mypage/myreservations";
-import MyBookmarks from "@src/components/mypage/mybookmarks";
+import MyBookmarks from "@src/components/mypage/my-bookmarks";
 import Footer from "@src/components/common/footer";
 // https://defineall.tistory.com/923
 
@@ -54,9 +54,7 @@ const MyPage = () => {
       {data && (
         <>
           <div className="relative w-full">
-            <div className="font-bold text-4xl mx-36 my-12 font-bold">
-              마이페이지
-            </div>
+            <div className="font-bold text-4xl mx-36 my-12">마이페이지</div>
             <div className="mx-36">
               <Profile data={data} />
               <MyReservations className="left-0" data={data} />

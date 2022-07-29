@@ -1,7 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { BBRRPClientContext } from "../context";
-import { AuthDocument, AuthMutation, AuthMutationVariables } from "../graphql/generated/schema";
+import {
+  AuthDocument,
+  AuthMutation,
+  AuthMutationVariables,
+} from "../graphql/generated/schema";
 import { isLoginSuccess } from "../shared/helpers";
 
 export const useLogin = () => {
