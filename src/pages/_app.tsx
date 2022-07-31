@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "../styles/carousel.css";
 import "@src/utilities/string";
 import "@src/utilities/array";
 import React, { useState } from "react";
@@ -19,6 +18,7 @@ function MyApp({ Component, pageProps, apollo }: AppProps & ApolloClientProps) {
       <QueryClientProvider client={queryClient}>
         <BBRRPClientProvider>
           <Layout>
+            {/* @ts-ignore */}
             <Component {...pageProps} />
             <ReactQueryDevtools />
           </Layout>

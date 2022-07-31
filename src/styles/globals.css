@@ -1,9 +1,9 @@
 @tailwind base;
 @tailwind components;
 
-.inner {
-  white-space: nowrap;
-  transition: transform 0.3s;
+body {
+  overflow-x: hidden;
+  background-color: white;
 }
 
 @font-face {

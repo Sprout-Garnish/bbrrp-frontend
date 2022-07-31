@@ -1,22 +1,11 @@
-import { useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { BBRRPClientContext } from "../context";
-import {
-  AuthDocument,
-  AuthMutation,
-  AuthMutationVariables,
-} from "../graphql/generated/schema";
+import { useAuthMutation } from "../graphql/generated/schema";
 import { isLoginSuccess } from "../shared/helpers";
 
-/**
- * @description THIS HOOK IS DEV ONLY
- */
 export const useDevLogin = () => {
-  const { setLoggedIn } = useContext(BBRRPClientContext);
-  const [authMutation, { loading, data: result }] = useMutation<
-    AuthMutation,
-    AuthMutationVariables
-  >(AuthDocument);
+  const { setCredentials } = useContext(BBRRPClientContext);
+  const [authMutation, { loading, data: result }] = useAuthMutation();
 
   const login = async () => {
     const Credentials = require("@private/credentials");
@@ -25,16 +14,19 @@ export const useDevLogin = () => {
         ...Credentials,
       },
     });
-    const success = isLoginSuccess(res?.data);
-    if (success) {
-      setLoggedIn(true);
+    if (
+      res.data?.authenticateUserWithPassword?.__typename ===
+      "UserAuthenticationWithPasswordSuccess"
+    ) {
+      alert("Login success");
+      setCredentials(res.data?.authenticateUserWithPassword.item);
     } else {
       alert("Login failed");
     }
   };
 
   const logout = () => {
-    setLoggedIn(false);
+    setCredentials(null);
   };
 
   return {

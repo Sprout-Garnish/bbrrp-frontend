@@ -1,15 +1,17 @@
+import { RestaurantQuery } from "@modules/client/graphql/generated/schema";
 import React from "react";
 
-interface propsType {
-  id: number;
-  name: string;
-  description: string;
-  location_raw: string;
-  category: string;
-  owner: string;
-}
+type PDetailInfo = Pick<
+  NonNullable<RestaurantQuery["restaurant"]>,
+  "name" | "location" | "description" | "category"
+>;
 
-const DetailInfo = (props: propsType) => {
+const DetailInfo: React.FC<PDetailInfo> = ({
+  name,
+  location,
+  description,
+  category,
+}) => {
   // const Category = () => {
   //   return null;
   // };
@@ -21,10 +23,13 @@ const DetailInfo = (props: propsType) => {
 
   return (
     <>
-      <div>{props.name}</div>
-      <div>{props.location_raw}</div>
-      <div>{props.description}</div>
-      <div>{props.category}</div>
+      <div>{name}</div>
+      <div>
+        {/* 주소로 바꿔야함 */}
+        {location?.lat} | {location?.lng}
+      </div>
+      <div>{description}</div>
+      <div>{category}</div>
     </>
   );
 };

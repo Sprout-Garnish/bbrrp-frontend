@@ -1210,7 +1210,7 @@ export type RestaurantQueryVariables = Exact<{
 }>;
 
 
-export type RestaurantQuery = { __typename?: 'Query', restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, reservationPrice?: number | null, info?: string | null, imagesCount?: number | null, reviewsCount?: number | null, location?: { __typename?: 'location', lat?: number | null, lng?: number | null } | null, owner?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null, isAdmin?: boolean | null, phone?: string | null, email?: string | null, role?: UserRoleType | null } | null, images?: Array<{ __typename?: 'Image', id: string, name?: string | null, description?: string | null, image?: { __typename?: 'CloudImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | { __typename?: 'LocalImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | null }> | null, reviews?: Array<{ __typename?: 'Review', id: string, imagesCount?: number | null, timestamp?: any | null, edited?: boolean | null, title?: string | null, content?: string | null, likes?: number | null, user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null, role?: UserRoleType | null, isAdmin?: boolean | null } | null, images?: Array<{ __typename?: 'Image', id: string, name?: string | null, description?: string | null, image?: { __typename?: 'CloudImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | { __typename?: 'LocalImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | null }> | null }> | null } | null };
+export type RestaurantQuery = { __typename?: 'Query', restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, reservationPrice?: number | null, info?: string | null, category?: string | null, imagesCount?: number | null, reviewsCount?: number | null, location?: { __typename?: 'location', lat?: number | null, lng?: number | null } | null, owner?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null, isAdmin?: boolean | null, phone?: string | null, email?: string | null, role?: UserRoleType | null } | null, images?: Array<{ __typename?: 'Image', id: string, name?: string | null, description?: string | null, image?: { __typename?: 'CloudImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | { __typename?: 'LocalImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | null }> | null, reviews?: Array<{ __typename?: 'Review', id: string, imagesCount?: number | null, timestamp?: any | null, edited?: boolean | null, title?: string | null, content?: string | null, likes?: number | null }> | null } | null };
 
 export type RestaurantsQueryVariables = Exact<{
   where?: RestaurantWhereInput;
@@ -1268,6 +1268,13 @@ export type UpdateReviewMutationVariables = Exact<{
 
 
 export type UpdateReviewMutation = { __typename?: 'Mutation', updateReview?: { __typename?: 'Review', id: string, title?: string | null } | null };
+
+export type UserQueryVariables = Exact<{
+  where?: UserWhereUniqueInput;
+}>;
+
+
+export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null, isAdmin?: boolean | null, phone?: string | null, email?: string | null, role?: UserRoleType | null, restaurants?: Array<{ __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, category?: string | null, info?: string | null }> | null, reservations?: Array<{ __typename?: 'Reservation', id: string, time?: any | null, reservationFee?: number | null, refund?: number | null, restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null } | null }> | null, bookmarks?: Array<{ __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, category?: string | null, info?: string | null }> | null, reviews?: Array<{ __typename?: 'Review', id: string, title?: string | null, content?: string | null, likes?: number | null, timestamp?: any | null, restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null } | null }> | null } | null };
 
 
 export const AuthDocument = gql`
@@ -1602,6 +1609,7 @@ export const RestaurantDocument = gql`
     }
     reservationPrice
     info
+    category
     images {
       id
       name
@@ -1619,27 +1627,6 @@ export const RestaurantDocument = gql`
     imagesCount
     reviews {
       id
-      user {
-        id
-        name
-        nickname
-        role
-        isAdmin
-      }
-      images {
-        id
-        name
-        description
-        image {
-          id
-          filesize
-          width
-          height
-          extension
-          ref
-          url
-        }
-      }
       imagesCount
       timestamp
       edited
@@ -2008,3 +1995,79 @@ export function useUpdateReviewMutation(baseOptions?: Apollo.MutationHookOptions
 export type UpdateReviewMutationHookResult = ReturnType<typeof useUpdateReviewMutation>;
 export type UpdateReviewMutationResult = Apollo.MutationResult<UpdateReviewMutation>;
 export type UpdateReviewMutationOptions = Apollo.BaseMutationOptions<UpdateReviewMutation, UpdateReviewMutationVariables>;
+export const UserDocument = gql`
+    query User($where: UserWhereUniqueInput! = {}) {
+  user(where: $where) {
+    id
+    name
+    nickname
+    isAdmin
+    phone
+    email
+    role
+    restaurants {
+      id
+      name
+      description
+      category
+      info
+    }
+    reservations {
+      id
+      time
+      reservationFee
+      refund
+      restaurant {
+        id
+        name
+      }
+    }
+    bookmarks {
+      id
+      name
+      description
+      category
+      info
+    }
+    reviews {
+      id
+      restaurant {
+        id
+        name
+      }
+      title
+      content
+      likes
+      timestamp
+    }
+  }
+}
+    `;
+
+/**
+ * __useUserQuery__
+ *
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+      }
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;

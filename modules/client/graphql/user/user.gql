@@ -1,0 +1,51 @@
+
+query User(
+  $where: UserWhereUniqueInput! = {}
+) {
+  user(
+    where: $where
+  ) {
+    id
+    name
+    nickname
+    isAdmin
+    phone
+    email
+    role
+    restaurants {
+      id
+      name
+      description
+      category
+      info
+    } 
+    reservations {
+      id
+      time
+      reservationFee
+      refund
+      restaurant {
+        id
+        name
+      }
+    }
+    bookmarks {
+      id
+      name
+      description
+      category
+      info
+    }
+    reviews {
+      id
+      restaurant {
+        id
+        name
+      }
+      title
+      content
+      likes
+      timestamp
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import Copyright from "./copyright";
-import SmallForm from "./smallForm";
+import SmallForm from "./small-form";
 
 const Form: React.FC = () => {
   return (
