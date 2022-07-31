@@ -1,95 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useSwipeable } from "react-swipeable";
+import React from "react";
 
 // https://medium.com/tinyso/how-to-create-the-responsive-and-swipeable-carousel-slider-component-in-react-99f433364aa0
 
-interface PCarouselItem {}
+interface PCarouselItem {
+  src: string;
+  order: number;
+}
 
-export const CarouselItem: React.FC<PCarouselItem> = ({ children }) => {
+export const CarouselItem: React.FC<PCarouselItem> = ({ src, order }) => {
   return (
-    <div
-      className="inline-flex items-center justify-center bg-white decoration-white"
-      style={{ width: "100%" }}
-    >
-      {children}
+    <div id={`slide${order}`} className="carousel-item relative w-full">
+      <img src={src} className="w-full" />
+      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+        <a href={`#slide${order - 1}`} className="btn btn-circle">
+          ❮
+        </a>
+        <a href={`#slide${order + 1}`} className="btn btn-circle">
+          ❯
+        </a>
+      </div>
     </div>
   );
 };
 
-interface PCarousel {}
-
-const Carousel: React.FC<PCarousel> = ({ children }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  const updateIndex = (newIndex: number) => {
-    if (newIndex < 0) {
-      newIndex = React.Children.count(children) - 1;
-    } else if (newIndex >= React.Children.count(children)) {
-      newIndex = 0;
-    }
-
-    setActiveIndex(newIndex);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!paused) {
-        updateIndex(activeIndex + 1);
-      }
-    }, 3000);
-
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  });
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => updateIndex(activeIndex + 1),
-    onSwipedRight: () => updateIndex(activeIndex - 1),
-  });
-
-  return (
-    <>
-      {" "}
-      <div
-        {...handlers}
-        className="overflow-hidden relative"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="flex justify-center">
-          <button
-            className="btn btn-circle btn-outline absolute z-10 left-10 top-1/2"
-            style={{}}
-            onClick={() => {
-              updateIndex(activeIndex - 1);
-            }}
-          >
-            ❮
-          </button>
-          <button
-            className="btn btn-circle btn-outline absolute z-10 right-10 top-1/2"
-            onClick={() => {
-              updateIndex(activeIndex + 1);
-            }}
-          >
-            ❯
-          </button>
-        </div>
-        <div
-          className="inner"
-          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-        >
-          {React.Children.map(children, (child) => {
-            return <>{child}</>;
-          })}
-        </div>
-      </div>
-    </>
-  );
+const Carousel: React.FC = ({ children }) => {
+  return <div className="carousel w-full">{children}</div>;
 };
 
 export default Carousel;

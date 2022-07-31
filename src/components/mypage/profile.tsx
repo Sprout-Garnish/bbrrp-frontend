@@ -1,7 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import { UserQuery } from "@modules/client/graphql/generated/schema";
 
-const Profile = (props) => {
+interface PProfile {
+  user: UserQuery["user"];
+}
+
+const Profile: React.FC<PProfile> = ({ user }) => {
   return (
     <div>
       <div className="flex">
@@ -15,7 +20,7 @@ const Profile = (props) => {
         </div>
         <div className="flex-col px-10 py-2 justify-center">
           <div className="font-semibold text-2xl py-3 ">
-            {props.data.user.name} / {props.data.user.nickname}
+            {user?.name} / {user?.nickname}
           </div>
           <button className="border-2 border-whitesmoke font-medium shadow-lg grow px-9 py-2 rounded-3xl">
             아이디/비밀번호 변경

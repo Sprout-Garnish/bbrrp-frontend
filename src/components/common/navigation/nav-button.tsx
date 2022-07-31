@@ -10,7 +10,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ title }) => {
     <Link href="/">
       <div
         onClick={() => alert("해당 페이지로 이동합니다.")}
-        className=" Georgia text-xl text-khaki bg-white px-8 py-4"
+        className="Georgia text-lg xl:text-xl text-khaki bg-white px-6 xl:px-8 py-4 cursor-pointer"
       >
         {title}
       </div>

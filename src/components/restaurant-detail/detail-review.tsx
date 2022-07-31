@@ -1,57 +1,68 @@
+import {
+  RestaurantQuery,
+  useReviewQuery,
+} from "@modules/client/graphql/generated/schema";
 import React from "react";
+import DetailImage from "./detail-image";
 
-interface propsType {
-  reviews: Array;
-}
+const __restaurant: Partial<RestaurantQuery["restaurant"]> = {};
+type Reviews = NonNullable<typeof __restaurant["reviews"]>;
+type PReview = Reviews[0];
 
-const DetailReview = (props: propsType) => {
-  function Review(props) {
-    const review = props.review;
-    return (
-      <>
+const Review: React.FC<PReview> = ({ id }) => {
+  const { data, loading, error } = useReviewQuery({
+    variables: {
+      where: {
+        id,
+      },
+    },
+  });
+  return (
+    <>
+      {loading && <div>로딩중...</div>}
+      {!loading && (error || !data) && <div>에러가 발생했습니다.</div>}
+      {!loading && data?.review && (
         <div>
           <span>
-            {review.user}
+            {data.review.user?.name}
             <br />
           </span>
           <span>
-            {review.timestamp}
+            {data.review.timestamp}
             <br />
           </span>
           <span>
-            좋아요 수 : {review.likes}
+            좋아요 수 : {data.review.likes}
             <br />
           </span>
           <span>
-            {review.title}
+            {data.review.title}
             <br />
           </span>
           <span>
-            {review.content}
+            {data.review.content}
             <br />
           </span>
           <div>
-            {review.images.map((image) => {
-              return (
-                <>
-                  <div key={image.id}>
-                    <h4>{image.name}</h4>
-                    <h5>{image.description}</h5>
-                    <div>{image.image}</div>
-                  </div>
-                </>
-              );
+            {data.review.images?.map((image, index) => {
+              return <DetailImage key={`DetailImage${index}`} {...image} />;
             })}
           </div>
         </div>
-      </>
-    );
-  }
+      )}
+    </>
+  );
+};
 
+interface PDetailReview {
+  reviews: Reviews;
+}
+
+const DetailReview: React.FC<PDetailReview> = ({ reviews }) => {
   return (
     <>
-      {props.reviews.map((review) => {
-        return <Review key={review.id} review={review}></Review>;
+      {reviews.map((review, index) => {
+        return <Review key={`Review${index}`} {...review} />;
       })}
     </>
   );

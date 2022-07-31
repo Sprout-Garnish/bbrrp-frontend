@@ -1,19 +1,35 @@
+import { Nullable } from "@src/utilities/types";
 import React, { useState } from "react";
+
+interface ICredentials {
+  name?: string | null;
+  id: string;
+}
 
 interface IBBRRPClientContext {
   loggedIn: boolean;
-  setLoggedIn: (loggedIn: boolean) => void;
+  setCredentials: (credentials: Nullable<ICredentials>) => void;
+  credentials: Nullable<ICredentials>;
+  userId: Nullable<string>;
 }
 
 export const BBRRPClientContext = React.createContext<IBBRRPClientContext>({
   loggedIn: false,
-  setLoggedIn: () => null,
+  setCredentials: () => {},
+  credentials: null,
+  userId: null,
 });
 
 export const BBRRPClientProvider: React.FC = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [credentials, setCredentials] = useState<Nullable<ICredentials>>(null);
+  const context: IBBRRPClientContext = {
+    credentials,
+    setCredentials,
+    userId: credentials?.id ?? null,
+    loggedIn: !!credentials,
+  };
   return (
-    <BBRRPClientContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <BBRRPClientContext.Provider value={context}>
       {children}
     </BBRRPClientContext.Provider>
   );

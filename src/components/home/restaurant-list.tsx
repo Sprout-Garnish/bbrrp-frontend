@@ -1,30 +1,26 @@
 import React from "react";
-import RestaurantItem, { PRestaurantItem } from "./restaurant-item";
-import { faker } from "@faker-js/faker";
-
-const mockData: PRestaurantItem[] = new Array(20).fill(null).map((_, i) => ({
-  id: String(i),
-  name: faker.lorem.words(),
-  briefIntro: faker.lorem.sentence(),
-  category: "일식",
-  location: "서울",
-  mainImg: "randomImage",
-}));
+import RestaurantItem from "./restaurant-item";
+import { useRestaurantsQuery } from "@modules/client/graphql/generated/schema";
 
 const RestaurantList: React.FC = () => {
-  const restaurantsToDisplay = mockData.map((item) => (
-    <RestaurantItem
-      id={item.id}
-      name={item.name}
-      briefIntro={item.briefIntro}
-      category={item.category}
-      location={item.location}
-      mainImg={item.mainImg}
-    />
-  ));
+  const { data, loading, error } = useRestaurantsQuery();
   return (
     <div className="container">
-      <div className="main">{restaurantsToDisplay}</div>
+      <div className="main">
+        {/* 더 elegant한 로딩 컴포넌트 필요함 */}
+        {loading && <div>Loading...</div>}
+        {/* 더 elegant한 에러 컴포넌트 + 에러 핸들링 로직이 필요함 */}
+        {!loading && error && <div>Error!</div>}
+        {/* 더 elegant한 No items 핸들링이 필요함 */}
+        {!loading && !error && data?.restaurants?.length === 0 && (
+          <div>No Items!</div>
+        )}
+        {!loading &&
+          !error &&
+          data?.restaurants?.map((restaurant, index) => (
+            <RestaurantItem key={`RestaurantItem${index}`} {...restaurant} />
+          ))}
+      </div>
     </div>
   );
 };

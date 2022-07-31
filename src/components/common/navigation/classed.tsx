@@ -8,12 +8,8 @@ export const Section = classed.section<SectionProps>(({ flex }) =>
     flex && `flex-${flex}`,
   ])
 );
-export const NavItemSection = classed<SectionProps>(Section)(
-  tw`justify-start pl-8`
-);
-export const MainTitleSection = classed<SectionProps>(Section)(
-  tw`justify-content flex-col justify-center`
-);
-export const NavSection = classed<SectionProps>(Section)(tw`justify-end pr-32`);
-export const NavBox = classed.nav`flex flex-row bg-gray-600 w-full`;
-export const Button = classed.a`ml-5`;
+export const NavItemSection = classed.section<SectionProps>`flex justify-start w-1/3`;
+export const MainTitleSection = classed.section<SectionProps>`flex flex-col justify-center items-center w-1/3`;
+export const NavSection = classed.section<SectionProps>`flex justify-end w-1/3`;
+export const NavBox = classed.nav`flex items-center w-full px-3 py-5 bg-white flex-row`;
+export const Button = classed.a`py-2.5`;

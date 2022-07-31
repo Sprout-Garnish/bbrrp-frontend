@@ -1,38 +1,50 @@
+import { RestaurantsQuery } from "@modules/client/graphql/generated/schema";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 
-type RestaurantCategory = "일식" | "양식" | "중식" | "한식";
+const __restaurantList: RestaurantsQuery["restaurants"] = [];
+const __restaurantImage: PRestaurantItem["images"] = [];
 
-export interface PRestaurantItem {
-  id: string; //기본키
-  name: string; //식당 이름
-  briefIntro: string; //한 줄 소개
-  category: RestaurantCategory; //식당 종류
-  location: string; //식당 위치
-  mainImg: string; //대표 이미지
-}
+type PRestaurantItem = typeof __restaurantList[number];
+type RestaurantImage = typeof __restaurantImage[number];
+
+const getImageURL = (images: RestaurantImage[]): string => {
+  let imageURL: string = "/bistro.jpg";
+  images.forEach((image) => {
+    imageURL = image.image?.url || imageURL;
+  });
+  return imageURL;
+};
 
 const RestaurantItem: React.FC<PRestaurantItem> = ({
   name,
-  briefIntro,
+  description,
   category,
-  location,
+  info,
+  images,
+  id,
 }) => {
+  const router = useRouter();
   return (
-    <div>
+    <button onClick={() => router.push(`/restaurants/${id}`)}>
       <div className="imageBox">
-        <Image src="/bistro.jpg" width={200} height={200} layout="fixed" />
+        <Image
+          src={getImageURL(images as RestaurantImage[])}
+          width={200}
+          height={200}
+          layout="fixed"
+        />
       </div>
       <div className="infoBox">
         <h4>{name}</h4>
         <h6>
-          {category} | {location}
+          {/** @prop {string} info address로 바꿀 필요가 있음  */}
+          {category} | {info}
         </h6>
-        <p>
-          {briefIntro.length <= 200 ? briefIntro : briefIntro.slice(0, 200)}
-        </p>
+        <p>{!!description && description.truncate(200)}</p>
       </div>
-    </div>
+    </button>
   );
 };
 
