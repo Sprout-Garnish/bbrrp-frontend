@@ -1,0 +1,19 @@
+
+query Reservation($where: ReservationWhereUniqueInput!) {
+  reservation(where: $where) {
+    id
+    time
+    reservationFee
+    refund
+    user {
+      id
+      name
+      nickname
+    }
+    restaurant {
+      id
+      description
+      info
+    }
+  }
+}

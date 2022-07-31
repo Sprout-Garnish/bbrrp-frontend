@@ -1,23 +1,20 @@
+import { RestaurantQuery } from "@modules/client/graphql/generated/schema";
 import React from "react";
+import DetailImage from "./detail-image";
 
-interface propsType {
-  images: Array;
+const __restaurant: Partial<RestaurantQuery["restaurant"]> = {};
+type Images = typeof __restaurant["images"];
+
+interface PDetailImages {
+  images: Images;
 }
 
-const DetailImages = (props: propsType) => {
+const DetailImages: React.FC<PDetailImages> = ({ images }) => {
   return (
     <>
-      {props.images.map((image) => {
-        return (
-          <>
-            <div key={image.id}>
-              <div>{image.image}</div>
-              <span>{image.name}</span>
-              <span>{image.description}</span>
-            </div>
-          </>
-        );
-      })}
+      {images?.map((image, index) => (
+        <DetailImage key={`DetailImage${index}`} {...image} />
+      ))}
     </>
   );
 };

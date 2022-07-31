@@ -19,6 +19,7 @@ query Restaurant($where: RestaurantWhereUniqueInput!) {
     }
     reservationPrice
     info
+    category
     images {
       id
       name
@@ -36,27 +37,6 @@ query Restaurant($where: RestaurantWhereUniqueInput!) {
     imagesCount
     reviews {
       id
-      user {
-        id
-        name
-        nickname
-        role
-        isAdmin
-      }
-      images {
-        id
-        name
-        description
-        image {
-          id
-          filesize
-          width
-          height
-          extension
-          ref
-          url
-        }
-      }
       imagesCount
       timestamp
       edited

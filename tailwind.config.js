@@ -13,10 +13,10 @@ module.exports = {
 
       // Table/ review/ location- #ffb42e
       orange: "#ffb42e",
+      white: "#ffffff",
 
-      black: "#000000",
-
-      white: "#FFFFFF",
+      // footer
+      grey: "#4f4f4f"
     },
     extend: {},
   },

@@ -1,5 +1,5 @@
 import { Nullable } from "@src/utilities/types";
-import { AuthMutation } from "../interfaces/AuthMutation";
+import { AuthMutation } from "../graphql/generated/schema";
 
 export const isLoginSuccess = (data: Nullable<AuthMutation>) => {
   return (
