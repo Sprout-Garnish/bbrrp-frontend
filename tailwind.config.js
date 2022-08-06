@@ -16,7 +16,10 @@ module.exports = {
       white: "#ffffff",
 
       // footer
-      grey: "#4f4f4f"
+      grey: "#4f4f4f",
+
+      //font color
+      black: "#000000",
     },
     extend: {},
   },
