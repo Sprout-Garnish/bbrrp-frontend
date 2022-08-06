@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "apollo:codegen": "graphql-codegen --config codegen.yml",
+    "apollo:codegen": "graphql-codegen --config codegen.yml && npx eslint modules/client/graphql/generated/schema.ts --fix",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -1110,40 +1110,86 @@ export type CreateReservationMutationVariables = Exact<{
   data: ReservationCreateInput;
 }>;
 
-
-export type CreateReservationMutation = { __typename?: 'Mutation', createReservation?: { __typename?: 'Reservation', id: string } | null };
+export type CreateReservationMutation = {
+  __typename?: "Mutation";
+  createReservation?: { __typename?: "Reservation"; id: string } | null;
+};
 
 export type DeleteReservationMutationVariables = Exact<{
   where: ReservationWhereUniqueInput;
 }>;
 
-
-export type DeleteReservationMutation = { __typename?: 'Mutation', deleteReservation?: { __typename?: 'Reservation', id: string } | null };
+export type DeleteReservationMutation = {
+  __typename?: "Mutation";
+  deleteReservation?: { __typename?: "Reservation"; id: string } | null;
+};
 
 export type ReservationQueryVariables = Exact<{
   where: ReservationWhereUniqueInput;
 }>;
 
-
-export type ReservationQuery = { __typename?: 'Query', reservation?: { __typename?: 'Reservation', id: string, time?: any | null, reservationFee?: number | null, refund?: number | null, user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null } | null, restaurant?: { __typename?: 'Restaurant', id: string, description?: string | null, info?: string | null } | null } | null };
+export type ReservationQuery = {
+  __typename?: "Query";
+  reservation?: {
+    __typename?: "Reservation";
+    id: string;
+    time?: any | null;
+    reservationFee?: number | null;
+    refund?: number | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name?: string | null;
+      nickname?: string | null;
+    } | null;
+    restaurant?: {
+      __typename?: "Restaurant";
+      id: string;
+      description?: string | null;
+      info?: string | null;
+    } | null;
+  } | null;
+};
 
 export type ReservationsQueryVariables = Exact<{
   where?: ReservationWhereInput;
   orderBy?: Array<ReservationOrderByInput> | ReservationOrderByInput;
-  take?: InputMaybe<Scalars['Int']>;
-  skip?: Scalars['Int'];
+  take?: InputMaybe<Scalars["Int"]>;
+  skip?: Scalars["Int"];
 }>;
 
-
-export type ReservationsQuery = { __typename?: 'Query', reservations?: Array<{ __typename?: 'Reservation', id: string, time?: any | null, reservationFee?: number | null, refund?: number | null, user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null } | null, restaurant?: { __typename?: 'Restaurant', id: string, description?: string | null, info?: string | null } | null }> | null };
+export type ReservationsQuery = {
+  __typename?: "Query";
+  reservations?: Array<{
+    __typename?: "Reservation";
+    id: string;
+    time?: any | null;
+    reservationFee?: number | null;
+    refund?: number | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name?: string | null;
+      nickname?: string | null;
+    } | null;
+    restaurant?: {
+      __typename?: "Restaurant";
+      id: string;
+      description?: string | null;
+      info?: string | null;
+    } | null;
+  }> | null;
+};
 
 export type UpdateReservationMutationVariables = Exact<{
   where: ReservationWhereUniqueInput;
   data: ReservationUpdateInput;
 }>;
 
-
-export type UpdateReservationMutation = { __typename?: 'Mutation', updateReservation?: { __typename?: 'Reservation', id: string } | null };
+export type UpdateReservationMutation = {
+  __typename?: "Mutation";
+  updateReservation?: { __typename?: "Reservation"; id: string } | null;
+};
 
 export type CreateRestaurantMutationVariables = Exact<{
   data: RestaurantCreateInput;
@@ -1175,7 +1221,73 @@ export type RestaurantQueryVariables = Exact<{
   where: RestaurantWhereUniqueInput;
 }>;
 
-export type RestaurantQuery = { __typename?: 'Query', restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, reservationPrice?: number | null, info?: string | null, category?: string | null, imagesCount?: number | null, reviewsCount?: number | null, location?: { __typename?: 'location', lat?: number | null, lng?: number | null } | null, owner?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null, isAdmin?: boolean | null, phone?: string | null, email?: string | null, role?: UserRoleType | null } | null, images?: Array<{ __typename?: 'Image', id: string, name?: string | null, description?: string | null, image?: { __typename?: 'CloudImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | { __typename?: 'LocalImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, ref: string, url: string } | null }> | null, reviews?: Array<{ __typename?: 'Review', id: string, imagesCount?: number | null, timestamp?: any | null, edited?: boolean | null, title?: string | null, content?: string | null, likes?: number | null }> | null } | null };
+export type RestaurantQuery = {
+  __typename?: "Query";
+  restaurant?: {
+    __typename?: "Restaurant";
+    id: string;
+    name?: string | null;
+    description?: string | null;
+    reservationPrice?: number | null;
+    info?: string | null;
+    category?: string | null;
+    imagesCount?: number | null;
+    reviewsCount?: number | null;
+    location?: {
+      __typename?: "location";
+      lat?: number | null;
+      lng?: number | null;
+    } | null;
+    owner?: {
+      __typename?: "User";
+      id: string;
+      name?: string | null;
+      nickname?: string | null;
+      isAdmin?: boolean | null;
+      phone?: string | null;
+      email?: string | null;
+      role?: UserRoleType | null;
+    } | null;
+    images?: Array<{
+      __typename?: "Image";
+      id: string;
+      name?: string | null;
+      description?: string | null;
+      image?:
+        | {
+            __typename?: "CloudImageFieldOutput";
+            id: string;
+            filesize: number;
+            width: number;
+            height: number;
+            extension: ImageExtension;
+            ref: string;
+            url: string;
+          }
+        | {
+            __typename?: "LocalImageFieldOutput";
+            id: string;
+            filesize: number;
+            width: number;
+            height: number;
+            extension: ImageExtension;
+            ref: string;
+            url: string;
+          }
+        | null;
+    }> | null;
+    reviews?: Array<{
+      __typename?: "Review";
+      id: string;
+      imagesCount?: number | null;
+      timestamp?: any | null;
+      edited?: boolean | null;
+      title?: string | null;
+      content?: string | null;
+      likes?: number | null;
+    }> | null;
+  } | null;
+};
 
 export type RestaurantsQueryVariables = Exact<{
   where?: RestaurantWhereInput;
@@ -1386,17 +1498,73 @@ export type UpdateReviewMutationVariables = Exact<{
   data: ReviewUpdateInput;
 }>;
 
-
-
-export type UpdateReviewMutation = { __typename?: 'Mutation', updateReview?: { __typename?: 'Review', id: string, title?: string | null } | null };
+export type UpdateReviewMutation = {
+  __typename?: "Mutation";
+  updateReview?: {
+    __typename?: "Review";
+    id: string;
+    title?: string | null;
+  } | null;
+};
 
 export type UserQueryVariables = Exact<{
   where?: UserWhereUniqueInput;
 }>;
 
-
-export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, nickname?: string | null, isAdmin?: boolean | null, phone?: string | null, email?: string | null, role?: UserRoleType | null, restaurants?: Array<{ __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, category?: string | null, info?: string | null }> | null, reservations?: Array<{ __typename?: 'Reservation', id: string, time?: any | null, reservationFee?: number | null, refund?: number | null, restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null } | null }> | null, bookmarks?: Array<{ __typename?: 'Restaurant', id: string, name?: string | null, description?: string | null, category?: string | null, info?: string | null }> | null, reviews?: Array<{ __typename?: 'Review', id: string, title?: string | null, content?: string | null, likes?: number | null, timestamp?: any | null, restaurant?: { __typename?: 'Restaurant', id: string, name?: string | null } | null }> | null } | null };
-
+export type UserQuery = {
+  __typename?: "Query";
+  user?: {
+    __typename?: "User";
+    id: string;
+    name?: string | null;
+    nickname?: string | null;
+    isAdmin?: boolean | null;
+    phone?: string | null;
+    email?: string | null;
+    role?: UserRoleType | null;
+    restaurants?: Array<{
+      __typename?: "Restaurant";
+      id: string;
+      name?: string | null;
+      description?: string | null;
+      category?: string | null;
+      info?: string | null;
+    }> | null;
+    reservations?: Array<{
+      __typename?: "Reservation";
+      id: string;
+      time?: any | null;
+      reservationFee?: number | null;
+      refund?: number | null;
+      restaurant?: {
+        __typename?: "Restaurant";
+        id: string;
+        name?: string | null;
+      } | null;
+    }> | null;
+    bookmarks?: Array<{
+      __typename?: "Restaurant";
+      id: string;
+      name?: string | null;
+      description?: string | null;
+      category?: string | null;
+      info?: string | null;
+    }> | null;
+    reviews?: Array<{
+      __typename?: "Review";
+      id: string;
+      title?: string | null;
+      content?: string | null;
+      likes?: number | null;
+      timestamp?: any | null;
+      restaurant?: {
+        __typename?: "Restaurant";
+        id: string;
+        name?: string | null;
+      } | null;
+    }> | null;
+  } | null;
+};
 
 export const AuthDocument = gql`
   mutation Auth($email: String!, $password: String!) {
@@ -1449,15 +1617,21 @@ export function useAuthMutation(
 }
 export type AuthMutationHookResult = ReturnType<typeof useAuthMutation>;
 export type AuthMutationResult = Apollo.MutationResult<AuthMutation>;
-export type AuthMutationOptions = Apollo.BaseMutationOptions<AuthMutation, AuthMutationVariables>;
+export type AuthMutationOptions = Apollo.BaseMutationOptions<
+  AuthMutation,
+  AuthMutationVariables
+>;
 export const CreateReservationDocument = gql`
-    mutation CreateReservation($data: ReservationCreateInput!) {
-  createReservation(data: $data) {
-    id
+  mutation CreateReservation($data: ReservationCreateInput!) {
+    createReservation(data: $data) {
+      id
+    }
   }
-}
-    `;
-export type CreateReservationMutationFn = Apollo.MutationFunction<CreateReservationMutation, CreateReservationMutationVariables>;
+`;
+export type CreateReservationMutationFn = Apollo.MutationFunction<
+  CreateReservationMutation,
+  CreateReservationMutationVariables
+>;
 
 /**
  * __useCreateReservationMutation__
@@ -1476,21 +1650,38 @@ export type CreateReservationMutationFn = Apollo.MutationFunction<CreateReservat
  *   },
  * });
  */
-export function useCreateReservationMutation(baseOptions?: Apollo.MutationHookOptions<CreateReservationMutation, CreateReservationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateReservationMutation, CreateReservationMutationVariables>(CreateReservationDocument, options);
-      }
-export type CreateReservationMutationHookResult = ReturnType<typeof useCreateReservationMutation>;
-export type CreateReservationMutationResult = Apollo.MutationResult<CreateReservationMutation>;
-export type CreateReservationMutationOptions = Apollo.BaseMutationOptions<CreateReservationMutation, CreateReservationMutationVariables>;
-export const DeleteReservationDocument = gql`
-    mutation DeleteReservation($where: ReservationWhereUniqueInput!) {
-  deleteReservation(where: $where) {
-    id
-  }
+export function useCreateReservationMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateReservationMutation,
+    CreateReservationMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateReservationMutation,
+    CreateReservationMutationVariables
+  >(CreateReservationDocument, options);
 }
-    `;
-export type DeleteReservationMutationFn = Apollo.MutationFunction<DeleteReservationMutation, DeleteReservationMutationVariables>;
+export type CreateReservationMutationHookResult = ReturnType<
+  typeof useCreateReservationMutation
+>;
+export type CreateReservationMutationResult =
+  Apollo.MutationResult<CreateReservationMutation>;
+export type CreateReservationMutationOptions = Apollo.BaseMutationOptions<
+  CreateReservationMutation,
+  CreateReservationMutationVariables
+>;
+export const DeleteReservationDocument = gql`
+  mutation DeleteReservation($where: ReservationWhereUniqueInput!) {
+    deleteReservation(where: $where) {
+      id
+    }
+  }
+`;
+export type DeleteReservationMutationFn = Apollo.MutationFunction<
+  DeleteReservationMutation,
+  DeleteReservationMutationVariables
+>;
 
 /**
  * __useDeleteReservationMutation__
@@ -1509,33 +1700,47 @@ export type DeleteReservationMutationFn = Apollo.MutationFunction<DeleteReservat
  *   },
  * });
  */
-export function useDeleteReservationMutation(baseOptions?: Apollo.MutationHookOptions<DeleteReservationMutation, DeleteReservationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteReservationMutation, DeleteReservationMutationVariables>(DeleteReservationDocument, options);
-      }
-export type DeleteReservationMutationHookResult = ReturnType<typeof useDeleteReservationMutation>;
-export type DeleteReservationMutationResult = Apollo.MutationResult<DeleteReservationMutation>;
-export type DeleteReservationMutationOptions = Apollo.BaseMutationOptions<DeleteReservationMutation, DeleteReservationMutationVariables>;
+export function useDeleteReservationMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteReservationMutation,
+    DeleteReservationMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteReservationMutation,
+    DeleteReservationMutationVariables
+  >(DeleteReservationDocument, options);
+}
+export type DeleteReservationMutationHookResult = ReturnType<
+  typeof useDeleteReservationMutation
+>;
+export type DeleteReservationMutationResult =
+  Apollo.MutationResult<DeleteReservationMutation>;
+export type DeleteReservationMutationOptions = Apollo.BaseMutationOptions<
+  DeleteReservationMutation,
+  DeleteReservationMutationVariables
+>;
 export const ReservationDocument = gql`
-    query Reservation($where: ReservationWhereUniqueInput!) {
-  reservation(where: $where) {
-    id
-    time
-    reservationFee
-    refund
-    user {
+  query Reservation($where: ReservationWhereUniqueInput!) {
+    reservation(where: $where) {
       id
-      name
-      nickname
-    }
-    restaurant {
-      id
-      description
-      info
+      time
+      reservationFee
+      refund
+      user {
+        id
+        name
+        nickname
+      }
+      restaurant {
+        id
+        description
+        info
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useReservationQuery__
@@ -1553,37 +1758,63 @@ export const ReservationDocument = gql`
  *   },
  * });
  */
-export function useReservationQuery(baseOptions: Apollo.QueryHookOptions<ReservationQuery, ReservationQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ReservationQuery, ReservationQueryVariables>(ReservationDocument, options);
-      }
-export function useReservationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReservationQuery, ReservationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ReservationQuery, ReservationQueryVariables>(ReservationDocument, options);
-        }
+export function useReservationQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    ReservationQuery,
+    ReservationQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<ReservationQuery, ReservationQueryVariables>(
+    ReservationDocument,
+    options
+  );
+}
+export function useReservationLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    ReservationQuery,
+    ReservationQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<ReservationQuery, ReservationQueryVariables>(
+    ReservationDocument,
+    options
+  );
+}
 export type ReservationQueryHookResult = ReturnType<typeof useReservationQuery>;
-export type ReservationLazyQueryHookResult = ReturnType<typeof useReservationLazyQuery>;
-export type ReservationQueryResult = Apollo.QueryResult<ReservationQuery, ReservationQueryVariables>;
+export type ReservationLazyQueryHookResult = ReturnType<
+  typeof useReservationLazyQuery
+>;
+export type ReservationQueryResult = Apollo.QueryResult<
+  ReservationQuery,
+  ReservationQueryVariables
+>;
 export const ReservationsDocument = gql`
-    query Reservations($where: ReservationWhereInput! = {}, $orderBy: [ReservationOrderByInput!]! = [], $take: Int, $skip: Int! = 0) {
-  reservations(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
-    id
-    time
-    reservationFee
-    refund
-    user {
+  query Reservations(
+    $where: ReservationWhereInput! = {}
+    $orderBy: [ReservationOrderByInput!]! = []
+    $take: Int
+    $skip: Int! = 0
+  ) {
+    reservations(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
       id
-      name
-      nickname
-    }
-    restaurant {
-      id
-      description
-      info
+      time
+      reservationFee
+      refund
+      user {
+        id
+        name
+        nickname
+      }
+      restaurant {
+        id
+        description
+        info
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useReservationsQuery__
@@ -1604,25 +1835,54 @@ export const ReservationsDocument = gql`
  *   },
  * });
  */
-export function useReservationsQuery(baseOptions?: Apollo.QueryHookOptions<ReservationsQuery, ReservationsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ReservationsQuery, ReservationsQueryVariables>(ReservationsDocument, options);
-      }
-export function useReservationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReservationsQuery, ReservationsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ReservationsQuery, ReservationsQueryVariables>(ReservationsDocument, options);
-        }
-export type ReservationsQueryHookResult = ReturnType<typeof useReservationsQuery>;
-export type ReservationsLazyQueryHookResult = ReturnType<typeof useReservationsLazyQuery>;
-export type ReservationsQueryResult = Apollo.QueryResult<ReservationsQuery, ReservationsQueryVariables>;
-export const UpdateReservationDocument = gql`
-    mutation UpdateReservation($where: ReservationWhereUniqueInput!, $data: ReservationUpdateInput!) {
-  updateReservation(where: $where, data: $data) {
-    id
-  }
+export function useReservationsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    ReservationsQuery,
+    ReservationsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<ReservationsQuery, ReservationsQueryVariables>(
+    ReservationsDocument,
+    options
+  );
 }
-    `;
-export type UpdateReservationMutationFn = Apollo.MutationFunction<UpdateReservationMutation, UpdateReservationMutationVariables>;
+export function useReservationsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    ReservationsQuery,
+    ReservationsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<ReservationsQuery, ReservationsQueryVariables>(
+    ReservationsDocument,
+    options
+  );
+}
+export type ReservationsQueryHookResult = ReturnType<
+  typeof useReservationsQuery
+>;
+export type ReservationsLazyQueryHookResult = ReturnType<
+  typeof useReservationsLazyQuery
+>;
+export type ReservationsQueryResult = Apollo.QueryResult<
+  ReservationsQuery,
+  ReservationsQueryVariables
+>;
+export const UpdateReservationDocument = gql`
+  mutation UpdateReservation(
+    $where: ReservationWhereUniqueInput!
+    $data: ReservationUpdateInput!
+  ) {
+    updateReservation(where: $where, data: $data) {
+      id
+    }
+  }
+`;
+export type UpdateReservationMutationFn = Apollo.MutationFunction<
+  UpdateReservationMutation,
+  UpdateReservationMutationVariables
+>;
 
 /**
  * __useUpdateReservationMutation__
@@ -1642,13 +1902,27 @@ export type UpdateReservationMutationFn = Apollo.MutationFunction<UpdateReservat
  *   },
  * });
  */
-export function useUpdateReservationMutation(baseOptions?: Apollo.MutationHookOptions<UpdateReservationMutation, UpdateReservationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateReservationMutation, UpdateReservationMutationVariables>(UpdateReservationDocument, options);
-      }
-export type UpdateReservationMutationHookResult = ReturnType<typeof useUpdateReservationMutation>;
-export type UpdateReservationMutationResult = Apollo.MutationResult<UpdateReservationMutation>;
-export type UpdateReservationMutationOptions = Apollo.BaseMutationOptions<UpdateReservationMutation, UpdateReservationMutationVariables>;
+export function useUpdateReservationMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateReservationMutation,
+    UpdateReservationMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateReservationMutation,
+    UpdateReservationMutationVariables
+  >(UpdateReservationDocument, options);
+}
+export type UpdateReservationMutationHookResult = ReturnType<
+  typeof useUpdateReservationMutation
+>;
+export type UpdateReservationMutationResult =
+  Apollo.MutationResult<UpdateReservationMutation>;
+export type UpdateReservationMutationOptions = Apollo.BaseMutationOptions<
+  UpdateReservationMutation,
+  UpdateReservationMutationVariables
+>;
 export const CreateRestaurantDocument = gql`
   mutation CreateRestaurant($data: RestaurantCreateInput!) {
     createRestaurant(data: $data) {
@@ -1752,28 +2026,8 @@ export type DeleteRestaurantMutationOptions = Apollo.BaseMutationOptions<
   DeleteRestaurantMutationVariables
 >;
 export const RestaurantDocument = gql`
-    query Restaurant($where: RestaurantWhereUniqueInput!) {
-  restaurant(where: $where) {
-    id
-    name
-    description
-    location {
-      lat
-      lng
-    }
-    owner {
-      id
-      name
-      nickname
-      isAdmin
-      phone
-      email
-      role
-    }
-    reservationPrice
-    info
-    category
-    images {
+  query Restaurant($where: RestaurantWhereUniqueInput!) {
+    restaurant(where: $where) {
       id
       name
       description
@@ -1781,34 +2035,35 @@ export const RestaurantDocument = gql`
         lat
         lng
       }
-    }
-    imagesCount
-    reviews {
-      id
+      owner {
+        id
+        name
+        nickname
+        isAdmin
+        phone
+        email
+        role
+      }
+      reservationPrice
+      info
+      category
+      images {
+        id
+        name
+        description
+        image {
+          id
+          filesize
+          width
+          height
+          extension
+          ref
+          url
+        }
+      }
       imagesCount
       reviews {
         id
-        user {
-          id
-          name
-          nickname
-          role
-          isAdmin
-        }
-        images {
-          id
-          name
-          description
-          image {
-            id
-            filesize
-            width
-            height
-            extension
-            ref
-            url
-          }
-        }
         imagesCount
         timestamp
         edited
@@ -2308,61 +2563,75 @@ export type UpdateReviewMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useUpdateReviewMutation(baseOptions?: Apollo.MutationHookOptions<UpdateReviewMutation, UpdateReviewMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateReviewMutation, UpdateReviewMutationVariables>(UpdateReviewDocument, options);
-      }
-export type UpdateReviewMutationHookResult = ReturnType<typeof useUpdateReviewMutation>;
-export type UpdateReviewMutationResult = Apollo.MutationResult<UpdateReviewMutation>;
-export type UpdateReviewMutationOptions = Apollo.BaseMutationOptions<UpdateReviewMutation, UpdateReviewMutationVariables>;
+export function useUpdateReviewMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateReviewMutation,
+    UpdateReviewMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateReviewMutation,
+    UpdateReviewMutationVariables
+  >(UpdateReviewDocument, options);
+}
+export type UpdateReviewMutationHookResult = ReturnType<
+  typeof useUpdateReviewMutation
+>;
+export type UpdateReviewMutationResult =
+  Apollo.MutationResult<UpdateReviewMutation>;
+export type UpdateReviewMutationOptions = Apollo.BaseMutationOptions<
+  UpdateReviewMutation,
+  UpdateReviewMutationVariables
+>;
 export const UserDocument = gql`
-    query User($where: UserWhereUniqueInput! = {}) {
-  user(where: $where) {
-    id
-    name
-    nickname
-    isAdmin
-    phone
-    email
-    role
-    restaurants {
+  query User($where: UserWhereUniqueInput! = {}) {
+    user(where: $where) {
       id
       name
-      description
-      category
-      info
-    }
-    reservations {
-      id
-      time
-      reservationFee
-      refund
-      restaurant {
+      nickname
+      isAdmin
+      phone
+      email
+      role
+      restaurants {
         id
         name
+        description
+        category
+        info
       }
-    }
-    bookmarks {
-      id
-      name
-      description
-      category
-      info
-    }
-    reviews {
-      id
-      restaurant {
+      reservations {
+        id
+        time
+        reservationFee
+        refund
+        restaurant {
+          id
+          name
+        }
+      }
+      bookmarks {
         id
         name
+        description
+        category
+        info
       }
-      title
-      content
-      likes
-      timestamp
+      reviews {
+        id
+        restaurant {
+          id
+          name
+        }
+        title
+        content
+        likes
+        timestamp
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useUserQuery__
@@ -2380,14 +2649,21 @@ export const UserDocument = gql`
  *   },
  * });
  */
-export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
-      }
-export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
-        }
+export function useUserQuery(
+  baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+}
+export function useUserLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(
+    UserDocument,
+    options
+  );
+}
 export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
