@@ -2,6 +2,7 @@ module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
     colors: {
+      black: "#000000",
       // Lemon table - #ffe12e
       lemon: "#ffe12e",
 
@@ -16,7 +17,7 @@ module.exports = {
       white: "#ffffff",
 
       // footer
-      grey: "#4f4f4f"
+      grey: "#4f4f4f",
     },
     extend: {},
   },

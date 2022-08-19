@@ -12,9 +12,19 @@ interface PDetailImages {
 const DetailImages: React.FC<PDetailImages> = ({ images }) => {
   return (
     <>
-      {images?.map((image, index) => (
-        <DetailImage key={`DetailImage${index}`} {...image} />
-      ))}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          width: "100%",
+        }}
+      >
+        <p className="mx-2 text-3xl mt-5 text-black font-bold">메뉴</p>
+        {images?.map((image, index) => (
+          <DetailImage key={`DetailImage${index}`} {...image} />
+        ))}
+      </div>
     </>
   );
 };
