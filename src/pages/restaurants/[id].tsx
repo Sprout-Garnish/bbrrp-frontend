@@ -2,9 +2,6 @@ import React from "react";
 import DetailImages from "@src/components/restaurant-detail/detail-images";
 import DetailInfo from "@src/components/restaurant-detail/detail-info";
 import DetailPrice from "@src/components/restaurant-detail/detail-price";
-import "@src/components/restaurant-detail/detail-bookbutton";
-import "@src/components/restaurant-detail/detail-review";
-import DetailBookButton from "@src/components/restaurant-detail/detail-bookbutton";
 import DetailReview from "@src/components/restaurant-detail/detail-review";
 import { useRouter } from "next/router";
 import { useRestaurantQuery } from "@modules/client/graphql/generated/schema";
@@ -19,6 +16,12 @@ const RestaurantDetail: React.FC = () => {
       },
     },
   });
+  const mockData = {
+    restaurant: {
+      images: ["a.png", "b.png", "c.png"],
+      reviews: [],
+    },
+  };
   return (
     <>
       {/* 더 elegant한 로딩창 필요 */}
@@ -29,7 +32,6 @@ const RestaurantDetail: React.FC = () => {
         <>
           <DetailImages images={data.restaurant.images ?? []} />
           <DetailInfo {...data.restaurant} />
-          <DetailBookButton />
           <DetailPrice {...data.restaurant} />
           <DetailReview reviews={data.restaurant.reviews ?? []} />
         </>
