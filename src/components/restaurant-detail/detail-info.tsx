@@ -1,6 +1,7 @@
 import { RestaurantQuery } from "@modules/client/graphql/generated/schema";
 import React from "react";
-
+import emptyStar from "../../../public/emptyStar.png";
+import filledStar from "../../../public/filledStar.png";
 type PDetailInfo = Pick<
   NonNullable<RestaurantQuery["restaurant"]>,
   "name" | "location" | "description" | "category" | "id" | "reservationPrice"
@@ -9,73 +10,44 @@ type PDetailInfo = Pick<
 const DetailInfo: React.FC<PDetailInfo> = ({
   id,
   name,
-  description,
   category,
   reservationPrice,
 }) => {
   //지도 API
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "flex-end",
-          width: "100%",
-          height: "100%",
-        }}
-        className="text-black"
-      >
-        <div style={{ flex: 1.3, flexDirection: "row", display: "flex" }}>
-          <h2 className="text-6xl mx-2 font-bold">{name}</h2>
-          <h4 className="text-4xl mx-2">{id}</h4>
-          <div style={{ display: "flex" }} className="text-4xl mx-16">
-            <p>별점</p>
-            <p>* * * * *</p>
-            <p>(인원)</p>
+      <div className="text-black flex flex-row mx-2">
+        <div className="flex flex-row w-6/12 items-end">
+          <h2 className="text-3xl font-bold">{name}</h2>
+          <h4 className="text-sm font-bold">{id}</h4>
+          <div className="text-lg font-bold mx-16 flex flex-row ">
+            <p className="items-center justify-center">별점</p>
+            {/* 로직 작성할 것 */}
+            {[1, 1, 0, 0, 0].map((num) => {
+              if (num) {
+                return <img className="w-8 h-8 mx-1" src={filledStar.src} />;
+              } else {
+                return <img className="w-8 h-8 mx-1" src={emptyStar.src} />;
+              }
+            })}
+            <p className="items-center justify-center">(1)</p>
           </div>
         </div>
-        <div
-          style={{
-            flex: 1,
-            flexDirection: "column",
-            display: "flex",
-            justifyContent: "flex-start",
-            height: "100%",
-          }}
-        >
+        <div className="flex flex-col items-end justify-end">
           <button
             type="button"
-            className="btn btn-wide border-lemon bg-lemon text-black text-bold text-2xl"
+            className="btn w-30 border-lemon bg-lemon text-black text-bold text-xl"
             onClick={() => alert("예약하기")}
           >
             예약하기
           </button>
         </div>
       </div>
-      <div
-        className="text-black"
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <p className="mx-2 mt-8 text-3xl">
-          {category} | {description}
-        </p>
-      </div>
-      <div
-        className="text-black"
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <p className="mx-2 mt-8 text-3xl">
-          예약가격: {reservationPrice} | 평균메뉴가격: 10000원
+      {/*여기 위까지가 예약하기 버튼 위*/}
+      <div className="text-black w-full h-full flex flex-col mx-2">
+        <p className=" mt-2 text-sm font-bold">{category}</p>
+        <p className=" mt-2 text-sm font-bold">
+          예약가격 {reservationPrice} 평균메뉴가격 5000
         </p>
       </div>
     </>

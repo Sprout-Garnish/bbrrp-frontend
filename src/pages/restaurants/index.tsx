@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DetailImages from "@src/components/restaurant-detail/detail-images";
 import DetailInfo from "@src/components/restaurant-detail/detail-info";
-import DetailPrice from "@src/components/restaurant-detail/detail-price";
 import "@src/components/restaurant-detail/detail-review";
 import DetailReview from "@src/components/restaurant-detail/detail-review";
 
@@ -23,7 +22,6 @@ const Restaurants = () => {
     <>
       <DetailInfo {...mockData.restaurant} />
       <DetailImages images={mockData.restaurant.images ?? []} />
-      <DetailPrice {...mockData.restaurant} />
       <DetailReview reviews={mockData.restaurant.reviews ?? []} />
     </>
   );

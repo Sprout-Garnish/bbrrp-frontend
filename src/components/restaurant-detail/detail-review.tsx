@@ -22,7 +22,8 @@ const Review: React.FC<PReview> = ({ id }) => {
       {loading && <div>로딩중...</div>}
       {!loading && (error || !data) && <div>에러가 발생했습니다.</div>}
       {!loading && data?.review && (
-        <div>
+        <div className="mx-2 mt-2">
+          <h2 className="text-xl font-bold text-black">리뷰</h2>
           <span>
             {data.review.user?.name}
             <br />
