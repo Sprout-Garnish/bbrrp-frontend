@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DetailImages from "@src/components/restaurant-detail/detail-images";
 import DetailInfo from "@src/components/restaurant-detail/detail-info";
 import DetailPrice from "@src/components/restaurant-detail/detail-price";
@@ -16,9 +16,6 @@ const RestaurantDetail: React.FC = () => {
       },
     },
   });
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
   return (
     <>
       {/* 더 elegant한 로딩창 필요 */}
