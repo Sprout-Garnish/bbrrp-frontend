@@ -3,7 +3,7 @@
 # See: https://www.graphql-code-generator.com/
 
 overwrite: true
-schema: "https://bbrrp-backend-production.up.railway.app/api/graphql"
+schema: "http://bbrrpbackend-env.eba-paud2p39.ap-northeast-2.elasticbeanstalk.com/api/graphql"
 documents: "modules/client/graphql/**/*.gql"
 generates:
   modules/client/graphql/generated/schema.ts:

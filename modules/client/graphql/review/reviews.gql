@@ -24,7 +24,6 @@ query Reviews(
           width
           height
           extension
-          ref
           url
         }
       }

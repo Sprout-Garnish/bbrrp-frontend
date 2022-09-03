@@ -19,7 +19,6 @@ query Review($where: ReviewWhereUniqueInput!) {
           width
           height
           extension
-          ref
           url
         }
       }

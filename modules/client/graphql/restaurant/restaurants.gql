@@ -33,7 +33,6 @@ query Restaurants(
       image {
         id
         extension
-        ref
         url
       }
     }

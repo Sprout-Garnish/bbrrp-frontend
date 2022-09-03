@@ -30,7 +30,6 @@ query Restaurant($where: RestaurantWhereUniqueInput!) {
         width
         height
         extension
-        ref
         url
       }
     }

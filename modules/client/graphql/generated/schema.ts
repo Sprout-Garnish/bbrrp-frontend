@@ -31,17 +31,6 @@ export type BooleanFilter = {
   not?: InputMaybe<BooleanFilter>;
 };
 
-export type CloudImageFieldOutput = ImageFieldOutput & {
-  __typename?: "CloudImageFieldOutput";
-  extension: ImageExtension;
-  filesize: Scalars["Int"];
-  height: Scalars["Int"];
-  id: Scalars["ID"];
-  ref: Scalars["String"];
-  url: Scalars["String"];
-  width: Scalars["Int"];
-};
-
 export type CreateInitialUserInput = {
   email?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
@@ -115,16 +104,15 @@ export enum ImageExtension {
 }
 
 export type ImageFieldInput = {
-  ref?: InputMaybe<Scalars["String"]>;
-  upload?: InputMaybe<Scalars["Upload"]>;
+  upload: Scalars["Upload"];
 };
 
 export type ImageFieldOutput = {
+  __typename?: "ImageFieldOutput";
   extension: ImageExtension;
   filesize: Scalars["Int"];
   height: Scalars["Int"];
   id: Scalars["ID"];
-  ref: Scalars["String"];
   url: Scalars["String"];
   width: Scalars["Int"];
 };
@@ -215,6 +203,7 @@ export type KeystoneAdminUiFieldMeta = {
   __typename?: "KeystoneAdminUIFieldMeta";
   createView: KeystoneAdminUiFieldMetaCreateView;
   customViewsIndex?: Maybe<Scalars["Int"]>;
+  description?: Maybe<Scalars["String"]>;
   fieldMeta?: Maybe<Scalars["JSON"]>;
   isFilterable: Scalars["Boolean"];
   isOrderable: Scalars["Boolean"];
@@ -295,17 +284,6 @@ export enum KeystoneAdminUiSortDirection {
 export type KeystoneMeta = {
   __typename?: "KeystoneMeta";
   adminMeta: KeystoneAdminMeta;
-};
-
-export type LocalImageFieldOutput = ImageFieldOutput & {
-  __typename?: "LocalImageFieldOutput";
-  extension: ImageExtension;
-  filesize: Scalars["Int"];
-  height: Scalars["Int"];
-  id: Scalars["ID"];
-  ref: Scalars["String"];
-  url: Scalars["String"];
-  width: Scalars["Int"];
 };
 
 export type Mutation = {
@@ -811,6 +789,7 @@ export type Review = {
   images?: Maybe<Array<Image>>;
   imagesCount?: Maybe<Scalars["Int"]>;
   likes?: Maybe<Scalars["Int"]>;
+  rating?: Maybe<Scalars["Float"]>;
   restaurant?: Maybe<Restaurant>;
   timestamp?: Maybe<Scalars["DateTime"]>;
   title?: Maybe<Scalars["String"]>;
@@ -833,6 +812,7 @@ export type ReviewCreateInput = {
   edited?: InputMaybe<Scalars["Boolean"]>;
   images?: InputMaybe<ImageRelateToManyForCreateInput>;
   likes?: InputMaybe<Scalars["Int"]>;
+  rating?: InputMaybe<Scalars["Float"]>;
   restaurant?: InputMaybe<RestaurantRelateToOneForCreateInput>;
   timestamp?: InputMaybe<Scalars["DateTime"]>;
   title?: InputMaybe<Scalars["String"]>;
@@ -850,6 +830,7 @@ export type ReviewOrderByInput = {
   edited?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   likes?: InputMaybe<OrderDirection>;
+  rating?: InputMaybe<OrderDirection>;
   timestamp?: InputMaybe<OrderDirection>;
   title?: InputMaybe<OrderDirection>;
 };
@@ -876,6 +857,7 @@ export type ReviewUpdateInput = {
   edited?: InputMaybe<Scalars["Boolean"]>;
   images?: InputMaybe<ImageRelateToManyForUpdateInput>;
   likes?: InputMaybe<Scalars["Int"]>;
+  rating?: InputMaybe<Scalars["Float"]>;
   restaurant?: InputMaybe<RestaurantRelateToOneForUpdateInput>;
   timestamp?: InputMaybe<Scalars["DateTime"]>;
   title?: InputMaybe<Scalars["String"]>;
@@ -891,6 +873,7 @@ export type ReviewWhereInput = {
   id?: InputMaybe<IdFilter>;
   images?: InputMaybe<ImageManyRelationFilter>;
   likes?: InputMaybe<IntNullableFilter>;
+  rating?: InputMaybe<FloatFilter>;
   restaurant?: InputMaybe<RestaurantWhereInput>;
   timestamp?: InputMaybe<DateTimeNullableFilter>;
   title?: InputMaybe<StringFilter>;
@@ -1253,28 +1236,15 @@ export type RestaurantQuery = {
       id: string;
       name?: string | null;
       description?: string | null;
-      image?:
-        | {
-            __typename?: "CloudImageFieldOutput";
-            id: string;
-            filesize: number;
-            width: number;
-            height: number;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | {
-            __typename?: "LocalImageFieldOutput";
-            id: string;
-            filesize: number;
-            width: number;
-            height: number;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | null;
+      image?: {
+        __typename?: "ImageFieldOutput";
+        id: string;
+        filesize: number;
+        width: number;
+        height: number;
+        extension: ImageExtension;
+        url: string;
+      } | null;
     }> | null;
     reviews?: Array<{
       __typename?: "Review";
@@ -1321,22 +1291,12 @@ export type RestaurantsQuery = {
       __typename?: "Image";
       id: string;
       name?: string | null;
-      image?:
-        | {
-            __typename?: "CloudImageFieldOutput";
-            id: string;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | {
-            __typename?: "LocalImageFieldOutput";
-            id: string;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | null;
+      image?: {
+        __typename?: "ImageFieldOutput";
+        id: string;
+        extension: ImageExtension;
+        url: string;
+      } | null;
     }> | null;
   }> | null;
 };
@@ -1410,28 +1370,15 @@ export type ReviewQuery = {
       id: string;
       name?: string | null;
       description?: string | null;
-      image?:
-        | {
-            __typename?: "CloudImageFieldOutput";
-            id: string;
-            filesize: number;
-            width: number;
-            height: number;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | {
-            __typename?: "LocalImageFieldOutput";
-            id: string;
-            filesize: number;
-            width: number;
-            height: number;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | null;
+      image?: {
+        __typename?: "ImageFieldOutput";
+        id: string;
+        filesize: number;
+        width: number;
+        height: number;
+        extension: ImageExtension;
+        url: string;
+      } | null;
     }> | null;
   } | null;
 };
@@ -1467,28 +1414,15 @@ export type ReviewsQuery = {
       id: string;
       name?: string | null;
       description?: string | null;
-      image?:
-        | {
-            __typename?: "CloudImageFieldOutput";
-            id: string;
-            filesize: number;
-            width: number;
-            height: number;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | {
-            __typename?: "LocalImageFieldOutput";
-            id: string;
-            filesize: number;
-            width: number;
-            height: number;
-            extension: ImageExtension;
-            ref: string;
-            url: string;
-          }
-        | null;
+      image?: {
+        __typename?: "ImageFieldOutput";
+        id: string;
+        filesize: number;
+        width: number;
+        height: number;
+        extension: ImageExtension;
+        url: string;
+      } | null;
     }> | null;
   }> | null;
 };
@@ -2057,7 +1991,6 @@ export const RestaurantDocument = gql`
           width
           height
           extension
-          ref
           url
         }
       }
@@ -2154,7 +2087,6 @@ export const RestaurantsDocument = gql`
         image {
           id
           extension
-          ref
           url
         }
       }
@@ -2392,7 +2324,6 @@ export const ReviewDocument = gql`
           width
           height
           extension
-          ref
           url
         }
       }
@@ -2472,7 +2403,6 @@ export const ReviewsDocument = gql`
           width
           height
           extension
-          ref
           url
         }
       }

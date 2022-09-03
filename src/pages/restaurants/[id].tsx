@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DetailImages from "@src/components/restaurant-detail/detail-images";
 import DetailInfo from "@src/components/restaurant-detail/detail-info";
 import DetailPrice from "@src/components/restaurant-detail/detail-price";
@@ -16,12 +16,9 @@ const RestaurantDetail: React.FC = () => {
       },
     },
   });
-  const mockData = {
-    restaurant: {
-      images: ["a.png", "b.png", "c.png"],
-      reviews: [],
-    },
-  };
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
   return (
     <>
       {/* 더 elegant한 로딩창 필요 */}
