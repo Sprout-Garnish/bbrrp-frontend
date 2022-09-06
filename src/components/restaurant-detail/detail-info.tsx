@@ -13,7 +13,6 @@ const DetailInfo: React.FC<PDetailInfo> = ({
   category,
   reservationPrice,
 }) => {
-  //지도 API
   return (
     <>
       <div className="text-black flex flex-row mx-2">
@@ -23,7 +22,7 @@ const DetailInfo: React.FC<PDetailInfo> = ({
           <div className="text-lg font-bold mx-16 flex flex-row ">
             <p className="items-center justify-center">별점</p>
             {/* 로직 작성할 것 */}
-            {[1, 1, 0, 0, 0].map((num) => {
+            {[1, 1, 1, 1, 0].map((num) => {
               if (num) {
                 return <img className="w-8 h-8 mx-1" src={filledStar.src} />;
               } else {

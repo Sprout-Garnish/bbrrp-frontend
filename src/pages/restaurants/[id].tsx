@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DetailImages from "@src/components/restaurant-detail/detail-images";
 import DetailInfo from "@src/components/restaurant-detail/detail-info";
 import DetailLocation from "@src/components/restaurant-detail/detail-location";
@@ -17,7 +17,6 @@ const RestaurantDetail: React.FC = () => {
       },
     },
   });
-  useEffect(() => console.log(data), [data]);
   return (
     <>
       {/* 더 elegant한 로딩창 필요 */}
@@ -30,7 +29,7 @@ const RestaurantDetail: React.FC = () => {
             <DetailInfo {...data.restaurant} />
             <DetailImages images={data.restaurant.images ?? []} />
             <DetailLocation location={data.restaurant.location} />
-            {/* <DetailReview reviews={data.restaurant.reviews ?? []} /> */}
+            <DetailReview reviews={data.restaurant.reviews ?? []} />
             <DetailMoreInfo info={data.restaurant.info} />
           </div>
         </>

@@ -10,6 +10,13 @@ import { ApolloProvider } from "@apollo/client";
 import Layout from "@src/components/common/layout";
 import { BBRRPClientProvider } from "@modules/client";
 
+//kakomap API
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 function MyApp({ Component, pageProps, apollo }: AppProps & ApolloClientProps) {
   // 서버사이드 렌더링으로 인한 오류를 방지하기 위해 사용
   const [queryClient] = useState(() => new QueryClient());
