@@ -11,5 +11,5 @@ export const Section = classed.section<SectionProps>(({ flex }) =>
 export const NavItemSection = classed.section<SectionProps>`flex justify-start w-1/3`;
 export const MainTitleSection = classed.section<SectionProps>`flex flex-col justify-center items-center w-1/3`;
 export const NavSection = classed.section<SectionProps>`flex justify-end w-1/3`;
-export const NavBox = classed.nav`flex items-center w-full px-3 py-5 bg-white flex-row`;
+export const NavBox = classed.nav`flex items-center w-full px-3 py-5 bg-white flex-row border-b border-b-whitesmoke shadow-lg`;
 export const Button = classed.a`py-2.5`;

@@ -24,15 +24,13 @@ const RestaurantDetail: React.FC = () => {
       {/* 더 elegant한 에러창 필요 */}
       {!loading && (error || !data) && <div>에러가 발생했습니다.</div>}
       {!loading && data?.restaurant && (
-        <>
-          <div className="w-full">
-            <DetailInfo {...data.restaurant} />
-            <DetailImages images={data.restaurant.images ?? []} />
-            <DetailLocation location={data.restaurant.location} />
-            <DetailReview reviews={data.restaurant.reviews ?? []} />
-            <DetailMoreInfo info={data.restaurant.info} />
-          </div>
-        </>
+        <div className="w-full mt-5 py-10 px-24">
+          <DetailInfo {...data.restaurant} />
+          <DetailImages images={data.restaurant.images ?? []} />
+          <DetailLocation location={data.restaurant.location} />
+          <DetailReview reviews={data.restaurant.reviews ?? []} />
+          <DetailMoreInfo info={data.restaurant.info} />
+        </div>
       )}
     </>
   );

@@ -8,30 +8,41 @@ type PDetailInfo = Pick<
 >;
 
 const DetailInfo: React.FC<PDetailInfo> = ({
-  id,
   name,
   category,
   reservationPrice,
 }) => {
   return (
     <>
-      <div className="text-black flex flex-row mx-2">
+      <div className="text-black flex flex-row justify-between mx-2">
+        {/* Title */}
         <div className="flex flex-row w-6/12 items-end">
+          {/* Restaurant Name */}
           <h2 className="text-3xl font-bold">{name}</h2>
-          <h4 className="text-sm font-bold">{id}</h4>
+          {/* Restaurant rating */}
           <div className="text-lg font-bold mx-16 flex flex-row ">
             <p className="items-center justify-center">별점</p>
             {/* 로직 작성할 것 */}
-            {[1, 1, 1, 1, 0].map((num) => {
+            {[1, 1, 1, 1, 0].map((num, index) => {
+              const key = `DetailInfo--star-${index}`;
               if (num) {
-                return <img className="w-8 h-8 mx-1" src={filledStar.src} />;
+                return (
+                  <img
+                    key={key}
+                    className="w-8 h-8 mx-1"
+                    src={filledStar.src}
+                  />
+                );
               } else {
-                return <img className="w-8 h-8 mx-1" src={emptyStar.src} />;
+                return (
+                  <img key={key} className="w-8 h-8 mx-1" src={emptyStar.src} />
+                );
               }
             })}
             <p className="items-center justify-center">(1)</p>
           </div>
         </div>
+        {/* Reservation Button */}
         <div className="flex flex-col items-end justify-end">
           <button
             type="button"
@@ -43,7 +54,9 @@ const DetailInfo: React.FC<PDetailInfo> = ({
         </div>
       </div>
       {/*여기 위까지가 예약하기 버튼 위*/}
-      <div className="text-black w-full h-full flex flex-col mx-2">
+      <hr className="mt-10 mb-5" />
+      {/* Information */}
+      <div className="text-black w-full h-full flex flex-col mx-2 p-5">
         <p className=" mt-2 text-sm font-bold">{category}</p>
         <p className=" mt-2 text-sm font-bold">
           예약가격 {reservationPrice} 평균메뉴가격 5000

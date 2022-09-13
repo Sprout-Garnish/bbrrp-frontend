@@ -1,6 +1,26 @@
-import React, { useEffect } from "react";
+/* eslint-disable no-undef */
+import React, { useEffect, useRef } from "react";
 import { RestaurantQuery } from "@modules/client/graphql/generated/schema";
-import { NextScript } from "next/document";
+
+const onLoadKakaoMap = (location: Location) => {
+  window.kakao.maps.load(() => {
+    const container = document.getElementById("mapUnique");
+    const options = {
+      center: new window.kakao.maps.LatLng(location?.lat, location?.lng),
+      level: 8,
+    };
+    const map = new window.kakao.maps.Map(container, options);
+    const markerPosition = new window.kakao.maps.LatLng(
+      location?.lng,
+      location?.lat
+    );
+    const marker = new window.kakao.maps.Marker({
+      position: markerPosition,
+    });
+    marker.setMap(map);
+    map.setCenter(markerPosition);
+  });
+};
 
 const __restaurant: Partial<RestaurantQuery["restaurant"]> = {};
 type Location = typeof __restaurant["location"];
@@ -10,35 +30,31 @@ interface DetailLocationProps {
 }
 
 const DetailLocation: React.FC<DetailLocationProps> = ({ location }) => {
+  const mapScript = useRef<HTMLScriptElement>();
+
   useEffect(() => {
-    const mapScript = document.createElement("script");
+    (async () => {
+      mapScript.current = document.createElement("script");
 
-    mapScript.async = true;
-    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
+      mapScript.current.async = true;
+      mapScript.current.type = "text/javascript";
+      mapScript.current.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
 
-    document.head.appendChild(mapScript);
+      document.head.appendChild(mapScript.current);
+    })();
+  }, []);
 
-    const onLoadKakaoMap = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById("mapUnique");
-        const options = {
-          center: new window.kakao.maps.LatLng(location?.lat, location?.lng),
-          level: 8,
-        };
-        const map = new window.kakao.maps.Map(container, options);
-        const markerPosition = new window.kakao.maps.LatLng(
-          location?.lat,
-          location?.lng
-        );
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-        });
-        marker.setMap(map);
-      });
+  useEffect(() => {
+    const mapLoader = () => onLoadKakaoMap(location);
+    if (mapScript.current) {
+      mapScript.current.addEventListener("load", mapLoader);
+    }
+
+    return () => {
+      if (mapScript.current) {
+        mapScript.current.removeEventListener("load", mapLoader);
+      }
     };
-    mapScript.addEventListener("load", onLoadKakaoMap);
-
-    return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, [location]);
 
   return (

@@ -51,4 +51,9 @@ body {
   font-family: "Avenir";
 }
 
+* {
+  box-sizing: border-box;
+  @apply Avenir;
+}
+
 @tailwind utilities;
